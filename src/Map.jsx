@@ -1,4 +1,4 @@
-import mapImage from "./assets/map.png";
+import mapImage from "./assets/map-regions.png";
 import { useUpdatePinMutation } from "./hooks/queries/useUpdatePinMutation";
 import { MapPin } from "./MapPin";
 
