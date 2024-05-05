@@ -14,12 +14,6 @@ export const useUpdateLocationMutation = () => {
       }).then((response) => response.json());
     },
     onSuccess: (updatedLocation, variables) => {
-      console.log(
-        "updateLocationMutation onSuccess",
-        updatedLocation,
-        variables,
-        queryClient.getQueryData(["locations"])
-      );
       queryClient.setQueryData(["locations"], (prev) =>
         prev.map((location) =>
           location.id === updatedLocation.id ? updatedLocation : location

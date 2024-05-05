@@ -58,7 +58,6 @@ export function Location({ location, pin, deslectPin }) {
               ) : null}
             </h4>
             <Markdown>{location.content}</Markdown>
-            {/* <p>{location.content}</p> */}
           </div>
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}

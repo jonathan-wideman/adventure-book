@@ -6,7 +6,6 @@ export const useUpdatePinMutation = () => {
 
   return useMutation({
     mutationFn: ({ pin, newPosition }) => {
-      // console.log("updatePinPositionMutation mutate", { pin, newPosition });
       if (!pin || !newPosition) {
         throw new Error("No selected pin or new position");
       }
@@ -19,12 +18,6 @@ export const useUpdatePinMutation = () => {
       }).then((response) => response.json());
     },
     onSuccess: (updatedPin, variables) => {
-      console.log(
-        "updatePinPositionMutation onSuccess",
-        updatedPin,
-        variables,
-        queryClient.getQueryData(["pins"])
-      );
       queryClient.setQueryData(["pins"], (prev) =>
         prev.map((pin) => (pin.id === updatedPin.id ? updatedPin : pin))
       );

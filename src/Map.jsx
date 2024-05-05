@@ -3,7 +3,6 @@ import { useUpdatePinMutation } from "./hooks/queries/useUpdatePinMutation";
 import { MapPin } from "./MapPin";
 
 export function Map({ locations, pins, selectedPin, setSelectedPin }) {
-  // const [selectedPin, setSelectedPin] = useState(null);
   const updatePinPositionMutation = useUpdatePinMutation();
 
   const onClickMap = (e) => {

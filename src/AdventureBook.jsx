@@ -46,15 +46,6 @@ export function AdventureBook() {
           <button onClick={() => addLocation()}>Add Location</button>
         )}
       </div>
-      {/* <div>
-              {locations.data?.map((location) => (
-                <Location
-                  key={location.id}
-                  location={location}
-                  pin={pins.data?.find((pin) => pin.locationId === location.id)}
-                />
-              ))}
-            </div> */}
     </>
   );
 }
