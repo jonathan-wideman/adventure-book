@@ -19,14 +19,11 @@ export function Location({ location, pin, deslectPin, toolMode, setToolMode }) {
   };
 
   const saveForm = () => {
-    console.log("saveForm", name, content);
-
     updateLocation.mutate({
       id: location.id,
       name,
       content,
     });
-
     setToolMode("select");
   };
 
