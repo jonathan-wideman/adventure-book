@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import Markdown from "react-markdown";
-import { useUpdateLocationMutation } from "./hooks/queries/useUpdateLocationMutation";
+import { useUpdateLocation } from "./hooks/queries/useUpdateLocation";
 
 export function Location({ location, pin, deslectPin, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
   const [content, setContent] = useState(location.content);
 
-  const updateLocationMutation = useUpdateLocationMutation();
+  const updateLocation = useUpdateLocation();
 
   useEffect(() => {
     resetForm();
@@ -21,7 +21,7 @@ export function Location({ location, pin, deslectPin, toolMode, setToolMode }) {
   const saveForm = () => {
     console.log("saveForm", name, content);
 
-    updateLocationMutation.mutate({
+    updateLocation.mutate({
       id: location.id,
       name,
       content,
@@ -94,7 +94,7 @@ export function Location({ location, pin, deslectPin, toolMode, setToolMode }) {
           </div>
         </>
       ) : null}
-      
+
       {toolMode === "edit" ? (
         <>
           <h4>Location - Edit Mode</h4>

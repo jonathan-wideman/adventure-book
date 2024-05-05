@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { dbUrl } from "../../api";
 
-export const useUpdatePinMutation = () => {
+export const useUpdatePin = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

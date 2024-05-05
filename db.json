@@ -8,7 +8,7 @@
     {
       "id": "2",
       "name": "Caravan; Ridge",
-      "content": "A stoic procession wends their way towards the valley. Several raise their eyes to regard you warily. The last traveller nods to you and mutters something vaguely congenial as you pass.\n\nFurther up the rocky ridge, you spy a small outpost."
+      "content": "A stoic procession wends their way towards the valley. Several raise their eyes to regard you warily. The last traveler nods to you and mutters something vaguely congenial as you pass.\n\nFurther up the rocky ridge, you spy a small outpost."
     },
     {
       "id": "3",
@@ -42,8 +42,8 @@
     {
       "id": "3",
       "locationId": "3",
-      "x": 288.5,
-      "y": 479.484375
+      "x": 284,
+      "y": 485.484375
     },
     {
       "id": "4",

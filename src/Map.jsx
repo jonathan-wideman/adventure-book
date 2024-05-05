@@ -1,5 +1,5 @@
 import mapImage from "./assets/map-regions.png";
-import { useUpdatePinMutation } from "./hooks/queries/useUpdatePinMutation";
+import { useUpdatePin } from "./hooks/queries/useUpdatePin";
 import { MapPin } from "./MapPin";
 
 export function Map({
@@ -10,7 +10,7 @@ export function Map({
   toolMode,
   setToolMode,
 }) {
-  const updatePinPositionMutation = useUpdatePinMutation();
+  const updatePinPosition = useUpdatePin();
 
   const onClickMap = (e) => {
     if (toolMode === "move") {
@@ -20,7 +20,7 @@ export function Map({
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      updatePinPositionMutation.mutate({
+      updatePinPosition.mutate({
         pin: pins?.data.find((pin) => pin.id === selectedPin),
         newPosition: { x, y },
       });
