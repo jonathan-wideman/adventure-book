@@ -1,0 +1,61 @@
+{
+  "locations": [
+    {
+      "id": "1",
+      "name": "River; Exposed Hill",
+      "content": "Rocky rapids divide the wind-swept banks. Scree slopes upward towards a small escarpment."
+    },
+    {
+      "id": "2",
+      "name": "Caravan; Ridge",
+      "content": "A stoic procession wends their way towards the valley. Several raise their eyes to regard you warily. The last traveller nods to you and mutters something vaguely congenial as you pass.\n\nFurther up the rocky ridge, you spy a small outpost."
+    },
+    {
+      "id": "3",
+      "name": "Isolated Waste",
+      "content": "You traverse a barren expanse of fine silty soil which clings damply to your boots. A few small birds pick amongst the muck, though you see no foliage where they might retreat.\n\nTo the north, you the glint of a river breaks the monotony. To the south, a line of mountains rise in the distance beyond the plain."
+    },
+    {
+      "id": "4",
+      "name": "Shadowy Ravine",
+      "content": "The river rushes below as you scale the side of this gloomy ravine. Shadow seems to hang heavily from thin, deeply scoured crevices in the rock. You shiver in the chill mist that slowly rises from the turbulent water."
+    },
+    {
+      "id": "5",
+      "name": "Grim River",
+      "content": "Dark currents glide silently between withered banks. The opposite shore is not too distant."
+    }
+  ],
+  "pins": [
+    {
+      "id": "1",
+      "locationId": "1",
+      "x": 384.5,
+      "y": 445.484375
+    },
+    {
+      "id": "2",
+      "locationId": "2",
+      "x": 415.5,
+      "y": 442.484375
+    },
+    {
+      "id": "3",
+      "locationId": "3",
+      "x": 288.5,
+      "y": 479.484375
+    },
+    {
+      "id": "4",
+      "locationId": "4",
+      "x": 484.5,
+      "y": 528.484375
+    },
+    {
+      "id": "5",
+      "locationId": "5",
+      "x": 269,
+      "y": 447.484375
+    }
+  ]
+}
