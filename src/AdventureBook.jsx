@@ -9,6 +9,7 @@ export function AdventureBook() {
   const pins = usePins();
 
   const [selectedPin, setSelectedPin] = useState(null);
+  const [toolMode, setToolMode] = useState("select"); // 'select' | 'edit' | 'move'
 
   const addLocation = () => {
     console.log("addLocation");
@@ -17,7 +18,7 @@ export function AdventureBook() {
   if (locations.isLoading || pins.isLoading) {
     return <div>Loading...</div>;
   }
-  
+
   if (locations.isError || pins.isError) {
     return <div>Something went wrong</div>;
   }
@@ -31,12 +32,17 @@ export function AdventureBook() {
         pins={pins}
         selectedPin={selectedPin}
         setSelectedPin={setSelectedPin}
+        toolMode={toolMode}
+        setToolMode={setToolMode}
       />
 
       {selectedPin ? (
         <Location
           location={locations.data.find((loc) => loc.id === selectedPin)}
+          pin={pins.data.find((pin) => pin.id === selectedPin)}
           deslectPin={() => setSelectedPin(null)}
+          toolMode={toolMode}
+          setToolMode={setToolMode}
         />
       ) : (
         <button onClick={() => addLocation()}>Add Location</button>

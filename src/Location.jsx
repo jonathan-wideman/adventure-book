@@ -3,15 +3,13 @@ import { useEffect } from "react";
 import Markdown from "react-markdown";
 import { useUpdateLocationMutation } from "./hooks/queries/useUpdateLocationMutation";
 
-export function Location({ location, pin, deslectPin }) {
-  const [editing, setEditing] = useState(false);
+export function Location({ location, pin, deslectPin, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
   const [content, setContent] = useState(location.content);
 
   const updateLocationMutation = useUpdateLocationMutation();
 
   useEffect(() => {
-    setEditing(false);
     resetForm();
   }, [location]);
 
@@ -29,11 +27,31 @@ export function Location({ location, pin, deslectPin }) {
       content,
     });
 
-    setEditing(false);
+    setToolMode("select");
   };
 
   const closeForm = () => {
     deslectPin();
+    resetForm();
+    setToolMode("select");
+  };
+
+  const enterEditMode = () => {
+    setToolMode("edit");
+  };
+
+  const cancelEditMode = () => {
+    resetForm();
+    setToolMode("select");
+  };
+
+  const enterMoveMode = () => {
+    setToolMode("move");
+    resetForm();
+  };
+
+  const cancelMoveMode = () => {
+    setToolMode("select");
   };
 
   return (
@@ -45,29 +63,41 @@ export function Location({ location, pin, deslectPin }) {
         margin: "0 auto",
       }}
     >
-      {!editing ? (
+      {toolMode === "select" ? (
         <>
           <div>
-            <h4>
-              {location.name}
-              {pin ? (
-                <>
-                  {" "}
-                  ({pin.x}, {pin.y})
-                </>
-              ) : null}
-            </h4>
+            <h4>{location.name}</h4>
             <Markdown>{location.content}</Markdown>
+          </div>
+
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
+          >
+            <button onClick={() => enterMoveMode()}>Move</button>
+            <button onClick={() => enterEditMode()}>Edit</button>
+            <button onClick={() => closeForm()}>Close</button>
+          </div>
+        </>
+      ) : null}
+
+      {toolMode === "move" ? (
+        <>
+          <h4>{location.name}</h4>
+          <div>
+            Moving from ({pin.x}, {pin.y})
           </div>
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
-            <button onClick={() => setEditing(true)}>Edit</button>
+            <button onClick={() => cancelMoveMode()}>Cancel</button>
             <button onClick={() => closeForm()}>Close</button>
           </div>
         </>
-      ) : (
+      ) : null}
+      
+      {toolMode === "edit" ? (
         <>
+          <h4>Location - Edit Mode</h4>
           <div>
             <input
               type="text"
@@ -85,15 +115,16 @@ export function Location({ location, pin, deslectPin }) {
               style={{ width: "100%" }}
             ></textarea>
           </div>
+
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
             <button onClick={() => resetForm()}>Reset</button>
-            <button onClick={() => setEditing(false)}>Cancel</button>
+            <button onClick={() => cancelEditMode()}>Cancel</button>
             <button onClick={() => saveForm()}>Save</button>
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 }

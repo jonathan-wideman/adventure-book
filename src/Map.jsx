@@ -2,20 +2,30 @@ import mapImage from "./assets/map.png";
 import { useUpdatePinMutation } from "./hooks/queries/useUpdatePinMutation";
 import { MapPin } from "./MapPin";
 
-export function Map({ locations, pins, selectedPin, setSelectedPin }) {
+export function Map({
+  locations,
+  pins,
+  selectedPin,
+  setSelectedPin,
+  toolMode,
+  setToolMode,
+}) {
   const updatePinPositionMutation = useUpdatePinMutation();
 
   const onClickMap = (e) => {
-    // Get the bounding rectangle of target
-    const rect = e.target.getBoundingClientRect();
-    // Mouse position
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    if (toolMode === "move") {
+      // Get the bounding rectangle of target
+      const rect = e.target.getBoundingClientRect();
+      // Mouse position
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    updatePinPositionMutation.mutate({
-      pin: pins?.data.find((pin) => pin.id === selectedPin),
-      newPosition: { x, y },
-    });
+      updatePinPositionMutation.mutate({
+        pin: pins?.data.find((pin) => pin.id === selectedPin),
+        newPosition: { x, y },
+      });
+    }
+    setToolMode("select");
     setSelectedPin(null);
   };
 
