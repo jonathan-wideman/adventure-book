@@ -1,19 +1,12 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { dbUrl } from "./api";
 import { Location } from "./Location";
 import { Map } from "./Map";
+import { useLocations } from "./hooks/queries/useLocations";
+import { usePins } from "./hooks/queries/usePins";
 
 export function AdventureBook() {
-  const locations = useQuery({
-    queryKey: ["locations"],
-    queryFn: () => fetch(`${dbUrl}/locations`).then((res) => res.json()),
-  });
-
-  const pins = useQuery({
-    queryKey: ["pins"],
-    queryFn: () => fetch(`${dbUrl}/pins`).then((res) => res.json()),
-  });
+  const locations = useLocations();
+  const pins = usePins();
 
   const [selectedPin, setSelectedPin] = useState(null);
 
@@ -23,6 +16,10 @@ export function AdventureBook() {
 
   if (locations.isLoading || pins.isLoading) {
     return <div>Loading...</div>;
+  }
+  
+  if (locations.isError || pins.isError) {
+    return <div>Something went wrong</div>;
   }
 
   return (
@@ -36,16 +33,14 @@ export function AdventureBook() {
         setSelectedPin={setSelectedPin}
       />
 
-      <div>
-        {selectedPin ? (
-          <Location
-            location={locations.data.find((loc) => loc.id === selectedPin)}
-            deslectPin={() => setSelectedPin(null)}
-          />
-        ) : (
-          <button onClick={() => addLocation()}>Add Location</button>
-        )}
-      </div>
+      {selectedPin ? (
+        <Location
+          location={locations.data.find((loc) => loc.id === selectedPin)}
+          deslectPin={() => setSelectedPin(null)}
+        />
+      ) : (
+        <button onClick={() => addLocation()}>Add Location</button>
+      )}
     </>
   );
 }
