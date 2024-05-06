@@ -20,6 +20,16 @@ export function AdventureBook() {
     (pin) => pin.locationId === selectedLocationId
   );
 
+  const deselect = () => {
+    setSelectedLocationId(null);
+  };
+
+  const toggleSelect = (locationId) => {
+    locationId === selectedLocationId
+      ? setSelectedLocationId(null)
+      : setSelectedLocationId(locationId);
+  };
+
   const clickAddLocation = () => {
     addLocation.mutate();
   };
@@ -48,8 +58,8 @@ export function AdventureBook() {
           locations={locations}
           pins={pins}
           selectedPin={selectedPin}
-          selectedLocationId={selectedLocationId}
-          setSelectedLocationId={setSelectedLocationId}
+          toggleSelect={toggleSelect}
+          deselect={deselect}
           toolMode={toolMode}
           setToolMode={setToolMode}
         />
@@ -59,7 +69,7 @@ export function AdventureBook() {
         <Location
           location={selectedLocation}
           pin={selectedPin}
-          deselect={() => setSelectedLocationId(null)}
+          deselect={deselect}
           toolMode={toolMode}
           setToolMode={setToolMode}
         />
