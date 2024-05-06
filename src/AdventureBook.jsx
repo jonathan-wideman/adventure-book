@@ -4,6 +4,7 @@ import { Map } from "./Map";
 import { useLocations } from "./hooks/queries/useLocations";
 import { usePins } from "./hooks/queries/usePins";
 import { useAddLocation } from "./hooks/queries/useAddLocation";
+import { LocationsList } from "./LocationsList";
 
 export function AdventureBook() {
   const locations = useLocations();
@@ -74,8 +75,15 @@ export function AdventureBook() {
           setToolMode={setToolMode}
         />
       ) : (
-        <button onClick={() => clickAddLocation()}>Add Location</button>
-        // TODO: list all locations, including those with no pins
+        <>
+          <h4>Locations</h4>
+          <LocationsList
+            locations={locations.data}
+            toggleSelect={toggleSelect}
+          />
+          <button onClick={() => clickAddLocation()}>Add Location</button>
+        </>
+        // TODO: Support locations with no pins
         // TODO: for selected location without a pin, show a button to enter place mode
         // TODO: place mode should add a pin when map is clicked
         // TODO: show previews in move, place modes
