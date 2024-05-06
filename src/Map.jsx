@@ -14,11 +14,11 @@ export function Map({
 
   const onClickMap = (e) => {
     if (toolMode === "move") {
-      // Get the bounding rectangle of target
+      // Get the bounding rectangle of the map
       const rect = e.target.getBoundingClientRect();
-      // Mouse position
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      // Get the mouse position as percentage of the map
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
 
       updatePinPosition.mutate({
         pin: pins?.data.find((pin) => pin.id === selectedPin),
@@ -26,7 +26,6 @@ export function Map({
       });
     }
     setToolMode("select");
-    setSelectedPin(null);
   };
 
   const selectPin = (pin) => {
@@ -34,7 +33,15 @@ export function Map({
   };
 
   return (
-    <div style={{ width: "100%", position: "relative" }} onClick={onClickMap}>
+    <div
+      style={{
+        width: "100%",
+        // height: "calc(100vh - 10rem)",
+        // overflow: "scroll",
+        position: "relative",
+      }}
+      onClick={onClickMap}
+    >
       <img src={mapImage} alt="map" style={{ width: "100%" }} />
       {pins.data?.map((pin) => (
         <MapPin

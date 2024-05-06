@@ -20,8 +20,8 @@ export function MapPin({ pin, location, selectPin, selected }) {
       <div
         style={{
           position: "absolute",
-          top: pin.y,
-          left: pin.x,
+          top: `${pin.y}%`,
+          left: `${pin.x}%`,
           userSelect: "none",
           cursor: "pointer",
           color: selected ? "white" : "black",
