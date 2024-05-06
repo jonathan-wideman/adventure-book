@@ -88,6 +88,9 @@ export function AdventureBook() {
         // TODO: place mode should add a pin when map is clicked
         // TODO: show previews in move, place modes
         // TODO: add method to delete pins, locations
+
+        // TODO: convert styles to tailwind
+        // TODO: add shadcdn-ui
       )}
     </>
   );
