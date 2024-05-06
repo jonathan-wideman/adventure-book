@@ -29,14 +29,23 @@ export function AdventureBook() {
     <>
       <h3>Adventure Book</h3>
 
-      <Map
-        locations={locations}
-        pins={pins}
-        selectedPin={selectedPin}
-        setSelectedPin={setSelectedPin}
-        toolMode={toolMode}
-        setToolMode={setToolMode}
-      />
+      <div
+        style={{
+          width: "100%",
+          // height: "calc(100vh - 10rem)",
+          // overflow: "scroll",
+          position: "relative",
+        }}
+      >
+        <Map
+          locations={locations}
+          pins={pins}
+          selectedPin={selectedPin}
+          setSelectedPin={setSelectedPin}
+          toolMode={toolMode}
+          setToolMode={setToolMode}
+        />
+      </div>
 
       {selectedPin ? (
         <Location
@@ -53,6 +62,7 @@ export function AdventureBook() {
         // TODO: for selected location without a pin, show a button to enter place mode
         // TODO: place mode should add a pin when map is clicked
         // TODO: show previews in move, place modes
+        // TODO: add method to delete pins, locations
       )}
     </>
   );

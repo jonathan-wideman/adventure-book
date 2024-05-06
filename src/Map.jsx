@@ -37,16 +37,13 @@ export function Map({
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        // height: "calc(100vh - 10rem)",
-        // overflow: "scroll",
-        position: "relative",
-      }}
-      onClick={onClickMap}
-    >
-      <img src={mapImage} alt="map" style={{ width: "100%" }} />
+    <>
+      <img
+        src={mapImage}
+        alt="map"
+        style={{ width: "100%" }}
+        onClick={onClickMap}
+      />
       {pins.data?.map((pin) => (
         <MapPin
           key={pin.id}
@@ -58,6 +55,6 @@ export function Map({
           selected={pin.id === selectedPin}
         />
       ))}
-    </div>
+    </>
   );
 }

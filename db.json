@@ -27,12 +27,17 @@
     },
     {
       "id": "9217",
-      "name": "Port Town",
+      "name": "TODO: Port Town",
       "content": "Placeholder description."
     },
     {
       "id": "cc35",
-      "name": "River Crossing Town",
+      "name": "TODO: River Crossing Town",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "f540",
+      "name": "TODO: Mountain Peak",
       "content": "Placeholder description."
     }
   ],
@@ -78,6 +83,12 @@
       "locationId": "cc35",
       "x": 12.9296875,
       "y": 47.694091796875
+    },
+    {
+      "id": "f540",
+      "locationId": "f540",
+      "x": 32.1875,
+      "y": 41.444091796875
     }
   ]
 }
