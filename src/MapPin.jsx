@@ -20,6 +20,7 @@ export function MapPin({ pin, location, onSelect, selected }) {
       <div
         style={{
           position: "absolute",
+          // FIXME: x and y don't work with different sizes somehow
           top: `${pin.y}%`,
           left: `${pin.x}%`,
           userSelect: "none",
