@@ -10,8 +10,15 @@ export function AdventureBook() {
   const pins = usePins();
   const addLocation = useAddLocation();
 
-  const [selectedPin, setSelectedPin] = useState(null);
+  const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [toolMode, setToolMode] = useState("select"); // 'select' | 'edit' | 'move'
+
+  const selectedLocation = locations.data?.find(
+    (loc) => loc.id === selectedLocationId
+  );
+  const selectedPin = pins.data?.find(
+    (pin) => pin.locationId === selectedLocationId
+  );
 
   const clickAddLocation = () => {
     addLocation.mutate();
@@ -41,24 +48,24 @@ export function AdventureBook() {
           locations={locations}
           pins={pins}
           selectedPin={selectedPin}
-          setSelectedPin={setSelectedPin}
+          selectedLocationId={selectedLocationId}
+          setSelectedLocationId={setSelectedLocationId}
           toolMode={toolMode}
           setToolMode={setToolMode}
         />
       </div>
 
-      {selectedPin ? (
+      {selectedLocation ? (
         <Location
-          location={locations.data.find((loc) => loc.id === selectedPin)} // FIXME: should use pin.locationId
-          pin={pins.data.find((pin) => pin.id === selectedPin)}
-          deslectPin={() => setSelectedPin(null)}
+          location={selectedLocation}
+          pin={selectedPin}
+          deselect={() => setSelectedLocationId(null)}
           toolMode={toolMode}
           setToolMode={setToolMode}
         />
       ) : (
         <button onClick={() => clickAddLocation()}>Add Location</button>
         // TODO: list all locations, including those with no pins
-        // TODO: change selection to be based on location id not pin id
         // TODO: for selected location without a pin, show a button to enter place mode
         // TODO: place mode should add a pin when map is clicked
         // TODO: show previews in move, place modes

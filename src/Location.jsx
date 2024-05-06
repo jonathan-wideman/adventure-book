@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Markdown from "react-markdown";
 import { useUpdateLocation } from "./hooks/queries/useUpdateLocation";
 
-export function Location({ location, pin, deslectPin, toolMode, setToolMode }) {
+export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
   const [content, setContent] = useState(location.content);
 
@@ -28,7 +28,7 @@ export function Location({ location, pin, deslectPin, toolMode, setToolMode }) {
   };
 
   const closeForm = () => {
-    deslectPin();
+    deselect();
     resetForm();
     setToolMode("select");
   };

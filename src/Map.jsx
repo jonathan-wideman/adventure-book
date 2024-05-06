@@ -6,7 +6,8 @@ export function Map({
   locations,
   pins,
   selectedPin,
-  setSelectedPin,
+  selectedLocationId,
+  setSelectedLocationId,
   toolMode,
   setToolMode,
 }) {
@@ -21,7 +22,7 @@ export function Map({
       const y = ((e.clientY - rect.top) / rect.height) * 100;
 
       updatePinPosition.mutate({
-        pin: pins?.data.find((pin) => pin.id === selectedPin),
+        pin: selectedPin,
         newPosition: { x, y },
       });
       setToolMode("select");
@@ -29,11 +30,13 @@ export function Map({
     }
 
     setToolMode("select");
-    setSelectedPin(null);
+    setSelectedLocationId(null);
   };
 
-  const selectPin = (pin) => {
-    setSelectedPin((prev) => (prev === pin ? null : pin));
+  const toggleLocationId = (locationId) => {
+    locationId === selectedLocationId
+      ? setSelectedLocationId(null)
+      : setSelectedLocationId(locationId);
   };
 
   return (
@@ -51,8 +54,8 @@ export function Map({
           location={locations.data?.find(
             (location) => location.id === pin.locationId
           )}
-          selectPin={selectPin}
-          selected={pin.id === selectedPin}
+          onSelect={() => toggleLocationId(pin.locationId)}
+          selected={pin.locationId === selectedLocationId}
         />
       ))}
     </>

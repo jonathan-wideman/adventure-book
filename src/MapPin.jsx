@@ -2,7 +2,7 @@ import { useState } from "react";
 import PinIcon from "./icons/PinIcon";
 import { useFloating, useHover, useInteractions } from "@floating-ui/react";
 
-export function MapPin({ pin, location, selectPin, selected }) {
+export function MapPin({ pin, location, onSelect, selected }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
@@ -31,7 +31,7 @@ export function MapPin({ pin, location, selectPin, selected }) {
         }}
         onClick={(e) => {
           e.stopPropagation();
-          selectPin(pin.id);
+          onSelect();
         }}
       >
         <div
