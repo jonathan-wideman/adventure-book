@@ -1,6 +1,10 @@
+import { useMemo } from "react";
 import mapImage from "./assets/map-regions.png";
 import { useUpdatePin } from "./hooks/queries/useUpdatePin";
+import useMousePosition from "./hooks/useMousePosition";
 import { MapPin } from "./MapPin";
+import { useRef } from "react";
+import { PinMarker } from "./PinMarker";
 
 export function Map({
   locations,
@@ -13,17 +17,26 @@ export function Map({
 }) {
   const updatePinPosition = useUpdatePin();
 
+  const mousePosition = useMousePosition();
+
+  const mapRef = useRef(null);
+
+  const mouseMapPercent = useMemo(() => {
+    if (!mapRef.current) return { x: 0, y: 0 };
+    // Get the bounding rectangle of the map
+    const rect = mapRef.current.getBoundingClientRect();
+    // Get the mouse position as percentage of the map
+    // TODO: clamp between 0 and 100
+    const x = ((mousePosition.x - rect.left) / rect.width) * 100;
+    const y = ((mousePosition.y - rect.top) / rect.height) * 100;
+    return { x, y };
+  }, [mousePosition]);
+
   const onClickMap = (e) => {
     if (toolMode === "move") {
-      // Get the bounding rectangle of the map
-      const rect = e.target.getBoundingClientRect();
-      // Get the mouse position as percentage of the map
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-
       updatePinPosition.mutate({
         pin: selectedPin,
-        newPosition: { x, y },
+        newPosition: mouseMapPercent,
       });
       setToolMode("select");
       return;
@@ -39,6 +52,7 @@ export function Map({
         src={mapImage}
         alt="map"
         style={{ width: "100%" }}
+        ref={mapRef}
         onClick={onClickMap}
       />
       {pins.data?.map((pin) => (
@@ -52,6 +66,14 @@ export function Map({
           selected={pin.id === selectedPin?.id}
         />
       ))}
+      {toolMode === "move" && (
+        <PinMarker
+          color="black"
+          x={mouseMapPercent.x}
+          y={mouseMapPercent.y}
+          disablePointerEvents
+        />
+      )}
     </>
   );
 }
