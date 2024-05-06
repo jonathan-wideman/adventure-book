@@ -24,8 +24,12 @@ export function Map({
         pin: pins?.data.find((pin) => pin.id === selectedPin),
         newPosition: { x, y },
       });
+      setToolMode("select");
+      return;
     }
+
     setToolMode("select");
+    setSelectedPin(null);
   };
 
   const selectPin = (pin) => {
