@@ -86,7 +86,6 @@ export function AdventureBook() {
         // TODO: Support locations with no pins
         // TODO: for selected location without a pin, show a button to enter place mode
         // TODO: place mode should add a pin when map is clicked
-        // TODO: better previews in move, place modes
         // TODO: add method to delete pins, locations
 
         // TODO: convert styles to tailwind

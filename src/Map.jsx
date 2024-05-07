@@ -64,11 +64,12 @@ export function Map({
           )}
           onSelect={() => toggleSelect(pin.locationId)}
           selected={pin.id === selectedPin?.id}
+          ghost={toolMode === "move"}
         />
       ))}
       {toolMode === "move" && (
         <PinMarker
-          color="black"
+          color="white"
           x={mouseMapPercent.x}
           y={mouseMapPercent.y}
           disablePointerEvents

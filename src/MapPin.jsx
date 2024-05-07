@@ -1,8 +1,9 @@
 import { useState } from "react";
 import PinIcon from "./icons/PinIcon";
 import { useFloating, useHover, useInteractions } from "@floating-ui/react";
+import { PinMarker } from "./PinMarker";
 
-export function MapPin({ pin, location, onSelect, selected }) {
+export function MapPin({ pin, location, onSelect, selected, ghost = false }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
@@ -15,12 +16,23 @@ export function MapPin({ pin, location, onSelect, selected }) {
 
   const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
 
+  if (ghost) {
+    return (
+      <PinMarker
+        color="hsla(0, 0%, 0%, 0.3)"
+        x={pin.x}
+        y={pin.y}
+        disablePointerEvents
+      />
+    );
+  }
+
   return (
     <>
       <div
         style={{
           position: "absolute",
-          // FIXME: x and y don't work with different sizes somehow
+          // FIXME: x and y don't work with different sizes somehow; probably aspect ratio issue
           top: `${pin.y}%`,
           left: `${pin.x}%`,
           userSelect: "none",
