@@ -3,12 +3,14 @@ import { useEffect } from "react";
 import Markdown from "react-markdown";
 import { useUpdateLocation } from "./hooks/queries/useUpdateLocation";
 import { DEFAULT_TOOL_MODE } from "./AdventureBook";
+import { useDeletePin } from "./hooks/queries/useDeletePin";
 
 export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
   const [content, setContent] = useState(location.content);
 
   const updateLocation = useUpdateLocation();
+  const deletePin = useDeletePin();
 
   useEffect(() => {
     resetForm();
@@ -60,6 +62,12 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
     setToolMode(DEFAULT_TOOL_MODE);
   };
 
+  const deletePinClicked = (pinId) => {
+    console.log("delete pin");
+    deletePin.mutate({ pinId });
+    setToolMode(DEFAULT_TOOL_MODE);
+  };
+
   return (
     <div
       style={{
@@ -99,8 +107,8 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
+            <button onClick={() => deletePinClicked(pin.id)}>Delete</button>
             <button onClick={() => cancelMoveMode()}>Cancel</button>
-            <button onClick={() => closeForm()}>Close</button>
           </div>
         </>
       ) : null}
@@ -115,7 +123,6 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
             <button onClick={() => cancelPlaceMode()}>Cancel</button>
-            <button onClick={() => closeForm()}>Close</button>
           </div>
         </>
       ) : null}
