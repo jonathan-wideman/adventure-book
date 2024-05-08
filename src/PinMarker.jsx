@@ -18,7 +18,7 @@ export function PinMarker({ color, x, y, disablePointerEvents = false }) {
       <div
         style={{
           position: "absolute",
-          bottom: "-0.4rem",
+          bottom: "-0.2rem",
           left: "-0.5rem",
           width: "1rem",
           textAlign: "center",
