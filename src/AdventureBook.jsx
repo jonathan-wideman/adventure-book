@@ -86,8 +86,6 @@ export function AdventureBook() {
           />
           <button onClick={() => clickAddLocation()}>Add Location</button>
         </>
-        // TODO: add method to delete pins, locations
-
         // TODO: convert styles to tailwind
         // TODO: add shadcdn-ui
       )}
