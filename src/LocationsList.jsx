@@ -37,7 +37,11 @@ export function LocationsList({ locations, toggleSelect }) {
           <div>No locations found</div>
         ) : (
           filteredLocations.map((location) => (
-            <div key={location.id} onClick={() => toggleSelect(location.id)}>
+            <div
+              key={location.id}
+              onClick={() => toggleSelect(location.id)}
+              style={{ cursor: "pointer" }}
+            >
               {location.id} - {location.name}
             </div>
           ))
