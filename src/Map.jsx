@@ -6,6 +6,7 @@ import { MapPin } from "./MapPin";
 import { useRef } from "react";
 import { PinMarker } from "./PinMarker";
 import { useAddPin } from "./hooks/queries/useAddPin";
+import { clamp } from "./util";
 
 export function Map({
   locations,
@@ -24,22 +25,24 @@ export function Map({
 
   const mapRef = useRef(null);
 
-  const mouseMapPercent = useMemo(() => {
+  const mouseMapPosition = useMemo(() => {
     if (!mapRef.current) return { x: 0, y: 0 };
     // Get the bounding rectangle of the map
     const rect = mapRef.current.getBoundingClientRect();
     // Get the mouse position as percentage of the map
-    // TODO: clamp between 0 and 100
     const x = ((mousePosition.x - rect.left) / rect.width) * 100;
     const y = ((mousePosition.y - rect.top) / rect.height) * 100;
-    return { x, y };
+    const isOnMap = x >= 0 && x <= 100 && y >= 0 && y <= 100;
+    return { x: clamp(x, 0, 100), y: clamp(y, 0, 100), isOnMap };
   }, [mousePosition]);
 
   const onClickMap = (e) => {
+    if (mouseMapPosition.isOnMap === false) return;
+
     if (toolMode === "move") {
       updatePinPosition.mutate({
         pin: selectedPin,
-        newPosition: mouseMapPercent,
+        newPosition: { x: mouseMapPosition.x, y: mouseMapPosition.y },
       });
       setToolMode("select");
       return;
@@ -48,8 +51,8 @@ export function Map({
     if (toolMode === "place") {
       addPin.mutate({
         locationId: selectedLocation.id,
-        x: mouseMapPercent.x,
-        y: mouseMapPercent.y,
+        x: mouseMapPosition.x,
+        y: mouseMapPosition.y,
       });
       setToolMode("select");
       return;
@@ -80,14 +83,15 @@ export function Map({
           ghost={toolMode === "move"}
         />
       ))}
-      {(toolMode === "move" || toolMode === "place") && (
-        <PinMarker
-          color="white"
-          x={mouseMapPercent.x}
-          y={mouseMapPercent.y}
-          disablePointerEvents
-        />
-      )}
+      {(toolMode === "move" || toolMode === "place") &&
+        mouseMapPosition.isOnMap && (
+          <PinMarker
+            color="hsla(0, 0%, 100%, 0.7)"
+            x={mouseMapPosition.x}
+            y={mouseMapPosition.y}
+            disablePointerEvents
+          />
+        )}
     </>
   );
 }
