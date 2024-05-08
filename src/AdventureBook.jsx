@@ -6,13 +6,15 @@ import { usePins } from "./hooks/queries/usePins";
 import { useAddLocation } from "./hooks/queries/useAddLocation";
 import { LocationsList } from "./LocationsList";
 
+export const DEFAULT_TOOL_MODE = "select";
+
 export function AdventureBook() {
   const locations = useLocations();
   const pins = usePins();
   const addLocation = useAddLocation();
 
   const [selectedLocationId, setSelectedLocationId] = useState(null);
-  const [toolMode, setToolMode] = useState("select"); // 'select' | 'edit' | 'move'
+  const [toolMode, setToolMode] = useState(DEFAULT_TOOL_MODE); // 'select' | 'edit' | 'move' | 'place'
 
   const selectedLocation = locations.data?.find(
     (loc) => loc.id === selectedLocationId
@@ -58,6 +60,7 @@ export function AdventureBook() {
         <Map
           locations={locations}
           pins={pins}
+          selectedLocation={selectedLocation}
           selectedPin={selectedPin}
           toggleSelect={toggleSelect}
           deselect={deselect}
@@ -83,9 +86,6 @@ export function AdventureBook() {
           />
           <button onClick={() => clickAddLocation()}>Add Location</button>
         </>
-        // TODO: Support locations with no pins
-        // TODO: for selected location without a pin, show a button to enter place mode
-        // TODO: place mode should add a pin when map is clicked
         // TODO: add method to delete pins, locations
 
         // TODO: convert styles to tailwind

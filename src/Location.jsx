@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Markdown from "react-markdown";
 import { useUpdateLocation } from "./hooks/queries/useUpdateLocation";
+import { DEFAULT_TOOL_MODE } from "./AdventureBook";
 
 export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
@@ -24,13 +25,13 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
       name,
       content,
     });
-    setToolMode("select");
+    setToolMode(DEFAULT_TOOL_MODE);
   };
 
   const closeForm = () => {
     deselect();
     resetForm();
-    setToolMode("select");
+    setToolMode(DEFAULT_TOOL_MODE);
   };
 
   const enterEditMode = () => {
@@ -39,7 +40,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
 
   const cancelEditMode = () => {
     resetForm();
-    setToolMode("select");
+    setToolMode(DEFAULT_TOOL_MODE);
   };
 
   const enterMoveMode = () => {
@@ -48,7 +49,15 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   };
 
   const cancelMoveMode = () => {
-    setToolMode("select");
+    setToolMode(DEFAULT_TOOL_MODE);
+  };
+
+  const enterPlaceMode = () => {
+    setToolMode("place");
+  };
+
+  const cancelPlaceMode = () => {
+    setToolMode(DEFAULT_TOOL_MODE);
   };
 
   return (
@@ -70,7 +79,11 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
-            <button onClick={() => enterMoveMode()}>Move</button>
+            {pin ? (
+              <button onClick={() => enterMoveMode()}>Move</button>
+            ) : (
+              <button onClick={() => enterPlaceMode()}>Place</button>
+            )}
             <button onClick={() => enterEditMode()}>Edit</button>
             <button onClick={() => closeForm()}>Close</button>
           </div>
@@ -79,14 +92,29 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
 
       {toolMode === "move" ? (
         <>
-          <h4>{location.name}</h4>
           <div>
-            Moving from ({pin.x}, {pin.y})
+            <h4>{location.name}</h4>
+            Move from ({pin.x}, {pin.y})
           </div>
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
             <button onClick={() => cancelMoveMode()}>Cancel</button>
+            <button onClick={() => closeForm()}>Close</button>
+          </div>
+        </>
+      ) : null}
+
+      {toolMode === "place" ? (
+        <>
+          <div>
+            <h4>{location.name}</h4>
+            Place
+          </div>
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
+          >
+            <button onClick={() => cancelPlaceMode()}>Cancel</button>
             <button onClick={() => closeForm()}>Close</button>
           </div>
         </>

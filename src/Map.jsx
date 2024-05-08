@@ -5,10 +5,12 @@ import useMousePosition from "./hooks/useMousePosition";
 import { MapPin } from "./MapPin";
 import { useRef } from "react";
 import { PinMarker } from "./PinMarker";
+import { useAddPin } from "./hooks/queries/useAddPin";
 
 export function Map({
   locations,
   pins,
+  selectedLocation,
   selectedPin,
   toggleSelect,
   deselect,
@@ -16,6 +18,7 @@ export function Map({
   setToolMode,
 }) {
   const updatePinPosition = useUpdatePin();
+  const addPin = useAddPin();
 
   const mousePosition = useMousePosition();
 
@@ -37,6 +40,16 @@ export function Map({
       updatePinPosition.mutate({
         pin: selectedPin,
         newPosition: mouseMapPercent,
+      });
+      setToolMode("select");
+      return;
+    }
+
+    if (toolMode === "place") {
+      addPin.mutate({
+        locationId: selectedLocation.id,
+        x: mouseMapPercent.x,
+        y: mouseMapPercent.y,
       });
       setToolMode("select");
       return;
@@ -67,7 +80,7 @@ export function Map({
           ghost={toolMode === "move"}
         />
       ))}
-      {toolMode === "move" && (
+      {(toolMode === "move" || toolMode === "place") && (
         <PinMarker
           color="white"
           x={mouseMapPercent.x}

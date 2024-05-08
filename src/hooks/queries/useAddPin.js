@@ -1,23 +1,25 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { dbUrl } from "../../api";
 
-export const useAddLocation = () => {
+export const useAddPin = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => {
-      return fetch(`${dbUrl}/locations`, {
+    mutationFn: ({ locationId, x, y }) => {
+      return fetch(`${dbUrl}/pins`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: "New Location",
-          content: "Placeholder description.",
+          id: locationId,
+          locationId,
+          x,
+          y,
         }),
       }).then((response) => response.json());
     },
-    onSuccess: (newLocation, variables) => {
-      queryClient.setQueryData(["locations"], (prev) => [...prev, newLocation]);
+    onSuccess: (newPin, variables) => {
+      queryClient.setQueryData(["pins"], (prev) => [...prev, newPin]);
     },
   });
 };
