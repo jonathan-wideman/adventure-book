@@ -46,17 +46,10 @@ export function AdventureBook() {
   }
 
   return (
-    <>
-      <h3>Adventure Book</h3>
+    <div className="max-w-7xl my-0 mx-auto text-center">
+      <h1 className="text-xl font-bold p-4">Adventure Book</h1>
 
-      <div
-        style={{
-          width: "100%",
-          // height: "calc(100vh - 10rem)",
-          // overflow: "scroll",
-          position: "relative",
-        }}
-      >
+      <div className="w-full relative">
         <Map
           locations={locations}
           pins={pins}
@@ -89,6 +82,6 @@ export function AdventureBook() {
         // TODO: convert styles to tailwind
         // TODO: add shadcdn-ui
       )}
-    </>
+    </div>
   );
 }

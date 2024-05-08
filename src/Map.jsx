@@ -67,7 +67,7 @@ export function Map({
       <img
         src={mapImage}
         alt="map"
-        style={{ width: "100%" }}
+        className="w-full"
         ref={mapRef}
         onClick={onClickMap}
       />

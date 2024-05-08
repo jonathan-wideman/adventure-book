@@ -76,14 +76,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "720px",
-        display: "flex",
-        flexDirection: "column",
-        margin: "0 auto",
-      }}
-    >
+    <div className="flex flex-col max-w-3xl my-0 mx-auto">
       {toolMode === "select" ? (
         <>
           <div>
@@ -91,9 +84,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             <Markdown>{location.content}</Markdown>
           </div>
 
-          <div
-            style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
-          >
+          <div className="flex justify-center gap-2">
             {pin ? (
               <button onClick={() => enterMoveMode()}>Move</button>
             ) : (
@@ -111,9 +102,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             <h4>{location.name}</h4>
             Move from ({pin.x}, {pin.y})
           </div>
-          <div
-            style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
-          >
+          <div className="flex justify-center gap-2">
             <button onClick={() => onClickDeletePin(pin.id)}>Delete</button>
             <button onClick={() => cancelMoveMode()}>Cancel</button>
           </div>
@@ -126,9 +115,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             <h4>{location.name}</h4>
             Place
           </div>
-          <div
-            style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
-          >
+          <div className="flex justify-center gap-2">
             <button onClick={() => cancelPlaceMode()}>Cancel</button>
           </div>
         </>
@@ -142,7 +129,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              style={{ width: "100%" }}
+              className="w-full"
             />
           </div>
           <div>
@@ -151,13 +138,11 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
               rows={10}
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              style={{ width: "100%" }}
+              className="w-full"
             ></textarea>
           </div>
 
-          <div
-            style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
-          >
+          <div className="flex justify-center gap-2">
             <button onClick={() => onClickDeleteLocation(location.id)}>
               Delete
             </button>
