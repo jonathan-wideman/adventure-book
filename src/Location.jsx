@@ -4,6 +4,7 @@ import Markdown from "react-markdown";
 import { useUpdateLocation } from "./hooks/queries/useUpdateLocation";
 import { DEFAULT_TOOL_MODE } from "./AdventureBook";
 import { useDeletePin } from "./hooks/queries/useDeletePin";
+import { useDeleteLocation } from "./hooks/queries/useDeleteLocation";
 
 export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
@@ -11,6 +12,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
 
   const updateLocation = useUpdateLocation();
   const deletePin = useDeletePin();
+  const deleteLocation = useDeleteLocation();
 
   useEffect(() => {
     resetForm();
@@ -62,10 +64,15 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
     setToolMode(DEFAULT_TOOL_MODE);
   };
 
-  const deletePinClicked = (pinId) => {
-    console.log("delete pin");
+  const onClickDeletePin = (pinId) => {
     deletePin.mutate({ pinId });
     setToolMode(DEFAULT_TOOL_MODE);
+  };
+
+  const onClickDeleteLocation = (locationId) => {
+    deleteLocation.mutate({ locationId });
+    setToolMode(DEFAULT_TOOL_MODE);
+    deselect();
   };
 
   return (
@@ -107,7 +114,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
-            <button onClick={() => deletePinClicked(pin.id)}>Delete</button>
+            <button onClick={() => onClickDeletePin(pin.id)}>Delete</button>
             <button onClick={() => cancelMoveMode()}>Cancel</button>
           </div>
         </>
@@ -151,7 +158,9 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
           <div
             style={{ display: "flex", justifyContent: "center", gap: "0.5rem" }}
           >
-            <button onClick={() => resetForm()}>Reset</button>
+            <button onClick={() => onClickDeleteLocation(location.id)}>
+              Delete
+            </button>
             <button onClick={() => cancelEditMode()}>Cancel</button>
             <button onClick={() => saveForm()}>Save</button>
           </div>

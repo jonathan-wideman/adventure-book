@@ -1,20 +1,20 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { dbUrl } from "../../api";
 
-export const useDeletePin = () => {
+export const useDeleteLocation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ pinId }) => {
-      return fetch(`${dbUrl}/pins/${pinId}`, {
+    mutationFn: ({ locationId }) => {
+      return fetch(`${dbUrl}/locations/${locationId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       }).then((response) => response.json());
     },
-    onSuccess: (deletedPin, variables) => {
-      queryClient.setQueryData(["pins"], (prev) =>
-        prev.filter((pin) => pin.id !== deletedPin.id)
+    onSuccess: (deletedLocation, variables) => {
+      queryClient.setQueryData(["locations"], (prev) =>
+        prev.filter((location) => location.id !== deletedLocation.id)
       );
     },
   });
