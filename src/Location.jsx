@@ -5,6 +5,7 @@ import { useUpdateLocation } from "./hooks/queries/useUpdateLocation";
 import { DEFAULT_TOOL_MODE } from "./AdventureBook";
 import { useDeletePin } from "./hooks/queries/useDeletePin";
 import { useDeleteLocation } from "./hooks/queries/useDeleteLocation";
+import { Button } from "./components/ui/button";
 
 export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
@@ -86,12 +87,12 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
 
           <div className="flex justify-center gap-2">
             {pin ? (
-              <button onClick={() => enterMoveMode()}>Move</button>
+              <Button onClick={() => enterMoveMode()}>Move</Button>
             ) : (
-              <button onClick={() => enterPlaceMode()}>Place</button>
+              <Button onClick={() => enterPlaceMode()}>Place</Button>
             )}
-            <button onClick={() => enterEditMode()}>Edit</button>
-            <button onClick={() => closeForm()}>Close</button>
+            <Button onClick={() => enterEditMode()}>Edit</Button>
+            <Button onClick={() => closeForm()}>Close</Button>
           </div>
         </>
       ) : null}
@@ -103,8 +104,8 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             Move from ({pin.x}, {pin.y})
           </div>
           <div className="flex justify-center gap-2">
-            <button onClick={() => onClickDeletePin(pin.id)}>Delete</button>
-            <button onClick={() => cancelMoveMode()}>Cancel</button>
+            <Button onClick={() => onClickDeletePin(pin.id)}>Delete</Button>
+            <Button onClick={() => cancelMoveMode()}>Cancel</Button>
           </div>
         </>
       ) : null}
@@ -116,7 +117,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             Place
           </div>
           <div className="flex justify-center gap-2">
-            <button onClick={() => cancelPlaceMode()}>Cancel</button>
+            <Button onClick={() => cancelPlaceMode()}>Cancel</Button>
           </div>
         </>
       ) : null}
@@ -143,11 +144,11 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
           </div>
 
           <div className="flex justify-center gap-2">
-            <button onClick={() => onClickDeleteLocation(location.id)}>
+            <Button onClick={() => onClickDeleteLocation(location.id)}>
               Delete
-            </button>
-            <button onClick={() => cancelEditMode()}>Cancel</button>
-            <button onClick={() => saveForm()}>Save</button>
+            </Button>
+            <Button onClick={() => cancelEditMode()}>Cancel</Button>
+            <Button onClick={() => saveForm()}>Save</Button>
           </div>
         </>
       ) : null}

@@ -5,6 +5,7 @@ import { useLocations } from "./hooks/queries/useLocations";
 import { usePins } from "./hooks/queries/usePins";
 import { useAddLocation } from "./hooks/queries/useAddLocation";
 import { LocationsList } from "./LocationsList";
+import { Button } from "./components/ui/button";
 
 export const DEFAULT_TOOL_MODE = "select";
 
@@ -77,7 +78,7 @@ export function AdventureBook() {
             locations={locations.data}
             toggleSelect={toggleSelect}
           />
-          <button onClick={() => clickAddLocation()}>Add Location</button>
+          <Button onClick={() => clickAddLocation()}>Add Location</Button>
         </>
         // TODO: convert styles to tailwind
         // TODO: add shadcdn-ui
