@@ -79,11 +79,11 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   };
 
   return (
-    <div className="flex flex-col max-w-3xl my-0 mx-auto">
+    <div className="mx-auto my-0 flex max-w-3xl flex-col">
       {toolMode === "select" ? (
         <>
           <div>
-            <h2 className="text-lg font-bold p-4">{location.name}</h2>
+            <h2 className="p-4 text-lg font-bold">{location.name}</h2>
             <Markdown>{location.content}</Markdown>
           </div>
           <div className="flex justify-center gap-2">
@@ -109,7 +109,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
       {toolMode === "move" ? (
         <>
           <div>
-            <h2 className="text-lg font-bold p-4">{location.name}</h2>
+            <h2 className="p-4 text-lg font-bold">{location.name}</h2>
             Move from ({pin.x}, {pin.y})
           </div>
           <div className="flex justify-center gap-2">
@@ -129,7 +129,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
       {toolMode === "place" ? (
         <>
           <div>
-            <h2 className="text-lg font-bold p-4">{location.name}</h2>
+            <h2 className="p-4 text-lg font-bold">{location.name}</h2>
             Place
           </div>
           <div className="flex justify-center gap-2">
@@ -142,7 +142,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
 
       {toolMode === "edit" ? (
         <>
-          <h2 className="text-lg font-bold p-4">{location.name}</h2>
+          <h2 className="p-4 text-lg font-bold">{location.name}</h2>
           <div>
             <Input
               type="text"

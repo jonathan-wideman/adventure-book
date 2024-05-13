@@ -18,10 +18,10 @@ export function AdventureBook() {
   const [toolMode, setToolMode] = useState(DEFAULT_TOOL_MODE); // 'select' | 'edit' | 'move' | 'place'
 
   const selectedLocation = locations.data?.find(
-    (loc) => loc.id === selectedLocationId
+    (loc) => loc.id === selectedLocationId,
   );
   const selectedPin = pins.data?.find(
-    (pin) => pin.locationId === selectedLocationId
+    (pin) => pin.locationId === selectedLocationId,
   );
 
   const deselect = () => {
@@ -47,10 +47,10 @@ export function AdventureBook() {
   }
 
   return (
-    <div className="max-w-7xl my-0 mx-auto text-center">
-      <h1 className="text-xl font-bold p-4">Adventure Book</h1>
+    <div className="mx-auto my-0 max-w-7xl text-center">
+      <h1 className="p-4 text-xl font-bold">Adventure Book</h1>
 
-      <div className="w-full relative">
+      <div className="relative w-full">
         <Map
           locations={locations}
           pins={pins}
@@ -73,7 +73,7 @@ export function AdventureBook() {
         />
       ) : (
         <>
-          <h2 className="text-lg font-bold p-4">Locations</h2>
+          <h2 className="p-4 text-lg font-bold">Locations</h2>
           <LocationsList
             locations={locations.data}
             toggleSelect={toggleSelect}

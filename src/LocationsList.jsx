@@ -10,21 +10,20 @@ export function LocationsList({ locations, toggleSelect }) {
       locations.filter(
         (location) =>
           location.name.toLowerCase().includes(search.toLowerCase()) ||
-          location.id.toLowerCase().includes(search.toLowerCase())
+          location.id.toLowerCase().includes(search.toLowerCase()),
       ),
-    [search, locations]
+    [search, locations],
   );
 
   return (
-    <div className="flex flex-col max-w-3xl my-0 mx-auto">
+    <div className="mx-auto my-0 flex max-w-3xl flex-col">
       <div>
         <Input
           type="search"
           placeholder="Location id or name"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          // FIXME: how does shadcn-ui do bg colors sith url bg's?
-          className="w-full ps-8 bg-[url('./search.svg')] bg-zinc-800 bg-search-icon bg-[position:theme(spacing.2)] bg-[size:theme(spacing.4)]"
+          className="bg-search-icon w-full bg-zinc-800 bg-[url('./search.svg')] bg-[size:theme(spacing.4)] bg-[position:theme(spacing.2)] bg-no-repeat ps-8"
         />
       </div>
       <div className="h-64 overflow-y-scroll">

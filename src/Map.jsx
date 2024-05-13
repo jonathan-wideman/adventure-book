@@ -76,7 +76,7 @@ export function Map({
           key={pin.id}
           pin={pin}
           location={locations.data?.find(
-            (location) => location.id === pin.locationId
+            (location) => location.id === pin.locationId,
           )}
           onSelect={() => toggleSelect(pin.locationId)}
           selected={pin.id === selectedPin?.id}

@@ -44,7 +44,7 @@ export function MapPin({ pin, location, onSelect, selected, ghost = false }) {
           filter: selected ? filterStyles.selected : filterStyles.unselected,
         }}
         className={
-          "absolute select-none cursor-pointer" +
+          "absolute cursor-pointer select-none" +
           (selected ? " text-zinc-100" : " text-zinc-800")
         }
         onClick={(e) => {
