@@ -89,12 +89,20 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
 
           <div className="flex justify-center gap-2">
             {pin ? (
-              <Button onClick={() => enterMoveMode()}>Move</Button>
+              <Button onClick={() => enterMoveMode()} variant="secondary">
+                Move
+              </Button>
             ) : (
-              <Button onClick={() => enterPlaceMode()}>Place</Button>
+              <Button onClick={() => enterPlaceMode()} variant="secondary">
+                Place
+              </Button>
             )}
-            <Button onClick={() => enterEditMode()}>Edit</Button>
-            <Button onClick={() => closeForm()}>Close</Button>
+            <Button onClick={() => enterEditMode()} variant="secondary">
+              Edit
+            </Button>
+            <Button onClick={() => closeForm()} variant="secondary">
+              Close
+            </Button>
           </div>
         </>
       ) : null}
@@ -106,8 +114,15 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             Move from ({pin.x}, {pin.y})
           </div>
           <div className="flex justify-center gap-2">
-            <Button onClick={() => onClickDeletePin(pin.id)}>Delete</Button>
-            <Button onClick={() => cancelMoveMode()}>Cancel</Button>
+            <Button
+              onClick={() => onClickDeletePin(pin.id)}
+              variant="secondary"
+            >
+              Delete
+            </Button>
+            <Button onClick={() => cancelMoveMode()} variant="secondary">
+              Cancel
+            </Button>
           </div>
         </>
       ) : null}
@@ -119,7 +134,9 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             Place
           </div>
           <div className="flex justify-center gap-2">
-            <Button onClick={() => cancelPlaceMode()}>Cancel</Button>
+            <Button onClick={() => cancelPlaceMode()} variant="secondary">
+              Cancel
+            </Button>
           </div>
         </>
       ) : null}
@@ -146,11 +163,18 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
           </div>
 
           <div className="flex justify-center gap-2">
-            <Button onClick={() => onClickDeleteLocation(location.id)}>
+            <Button
+              onClick={() => onClickDeleteLocation(location.id)}
+              variant="secondary"
+            >
               Delete
             </Button>
-            <Button onClick={() => cancelEditMode()}>Cancel</Button>
-            <Button onClick={() => saveForm()}>Save</Button>
+            <Button onClick={() => cancelEditMode()} variant="secondary">
+              Cancel
+            </Button>
+            <Button onClick={() => saveForm()} variant="secondary">
+              Save
+            </Button>
           </div>
         </>
       ) : null}

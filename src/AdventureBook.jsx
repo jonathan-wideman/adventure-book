@@ -78,7 +78,9 @@ export function AdventureBook() {
             locations={locations.data}
             toggleSelect={toggleSelect}
           />
-          <Button onClick={() => clickAddLocation()}>Add Location</Button>
+          <Button onClick={() => clickAddLocation()} variant="secondary">
+            Add Location
+          </Button>
         </>
         // TODO: convert styles to tailwind
         // TODO: add shadcdn-ui
