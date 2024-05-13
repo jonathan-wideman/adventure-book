@@ -79,7 +79,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   };
 
   return (
-    <div className="mx-auto my-0 flex max-w-3xl flex-col">
+    <div className="mx-auto my-0 flex max-w-3xl flex-col gap-4">
       {toolMode === "select" ? (
         <>
           <div>
