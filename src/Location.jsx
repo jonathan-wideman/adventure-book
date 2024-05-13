@@ -6,6 +6,8 @@ import { DEFAULT_TOOL_MODE } from "./AdventureBook";
 import { useDeletePin } from "./hooks/queries/useDeletePin";
 import { useDeleteLocation } from "./hooks/queries/useDeleteLocation";
 import { Button } from "./components/ui/button";
+import { Textarea } from "./components/ui/textarea";
+import { Input } from "./components/ui/input";
 
 export function Location({ location, pin, deselect, toolMode, setToolMode }) {
   const [name, setName] = useState(location.name);
@@ -126,7 +128,7 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
         <>
           <h4>Location - Edit Mode</h4>
           <div>
-            <input
+            <Input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -134,13 +136,13 @@ export function Location({ location, pin, deselect, toolMode, setToolMode }) {
             />
           </div>
           <div>
-            <textarea
+            <Textarea
               cols={40}
               rows={10}
               value={content}
               onChange={(e) => setContent(e.target.value)}
               className="w-full"
-            ></textarea>
+            ></Textarea>
           </div>
 
           <div className="flex justify-center gap-2">
