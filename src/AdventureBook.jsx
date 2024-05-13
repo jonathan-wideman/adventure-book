@@ -73,7 +73,7 @@ export function AdventureBook() {
         />
       ) : (
         <>
-          <h4>Locations</h4>
+          <h2 className="text-lg font-bold p-4">Locations</h2>
           <LocationsList
             locations={locations.data}
             toggleSelect={toggleSelect}
