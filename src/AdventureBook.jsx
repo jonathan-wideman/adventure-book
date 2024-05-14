@@ -6,13 +6,14 @@ import { usePins } from "./hooks/queries/usePins";
 import { useAddLocation } from "./hooks/queries/useAddLocation";
 import { LocationsList } from "./LocationsList";
 import { Button } from "./components/ui/button";
+import { LocationSelect } from "./LocationSelect";
+import { LocationToolbar } from "./LocationToolbar";
 
 export const DEFAULT_TOOL_MODE = "select";
 
 export function AdventureBook() {
   const locations = useLocations();
   const pins = usePins();
-  const addLocation = useAddLocation();
 
   const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [toolMode, setToolMode] = useState(DEFAULT_TOOL_MODE); // 'select' | 'edit' | 'move' | 'place'
@@ -34,6 +35,12 @@ export function AdventureBook() {
       : setSelectedLocationId(locationId);
   };
 
+  const onLocationAdded = (location) => {
+    setSelectedLocationId(location.id);
+  };
+
+  const addLocation = useAddLocation(onLocationAdded);
+
   const clickAddLocation = () => {
     addLocation.mutate();
   };
@@ -48,7 +55,38 @@ export function AdventureBook() {
 
   return (
     <div className="mx-auto my-0 max-w-7xl text-center">
-      <h1 className="p-4 text-xl font-bold">Adventure Book</h1>
+      <div className="sticky top-0 z-10 flex items-center justify-between gap-4 bg-zinc-900">
+        <div className="flex items-center gap-4">
+          <h1 className="p-4 text-xl font-bold">Adventure Book</h1>
+          <LocationSelect
+            locations={locations.data}
+            selectedLocation={selectedLocation}
+            toggleSelect={toggleSelect}
+          />
+          {selectedLocation ? (
+            // FIXME: overflow isn't working
+            // see https://www.bennadel.com/blog/3881-css-flexbox-overflow-text-overflow-ellipses-and-a-separation-of-concerns.htm
+            <div className="overflow-hidden text-ellipsis">
+              {selectedLocation.content.slice(0, 70)}...
+            </div>
+          ) : null}
+        </div>
+        <div className="flex items-center gap-4">
+          {selectedLocation ? (
+            <LocationToolbar
+              location={selectedLocation}
+              pin={selectedPin}
+              deselect={deselect}
+              toolMode={toolMode}
+              setToolMode={setToolMode}
+            />
+          ) : (
+            <Button onClick={() => clickAddLocation()} variant="secondary">
+              Add Location
+            </Button>
+          )}
+        </div>
+      </div>
 
       <div className="relative w-full">
         <Map

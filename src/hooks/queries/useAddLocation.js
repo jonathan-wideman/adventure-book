@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { dbUrl } from "../../api";
 
-export const useAddLocation = () => {
+export const useAddLocation = (callback = undefined) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: () => {
@@ -18,6 +18,9 @@ export const useAddLocation = () => {
     },
     onSuccess: (newLocation, variables) => {
       queryClient.setQueryData(["locations"], (prev) => [...prev, newLocation]);
+      if (callback) {
+        callback(newLocation);
+      }
     },
   });
 };
