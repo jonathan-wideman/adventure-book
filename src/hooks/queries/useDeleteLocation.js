@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { dbUrl } from "../../api";
 
+// FIXME: cascade delete pin
 export const useDeleteLocation = () => {
   const queryClient = useQueryClient();
   return useMutation({
