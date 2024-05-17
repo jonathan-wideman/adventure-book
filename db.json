@@ -84,6 +84,61 @@
       "id": "a8e5",
       "name": "TODO: Withered Fen",
       "content": "Placeholder description."
+    },
+    {
+      "id": "2b0c",
+      "name": "TODO: Beautiful Grave",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "81e8",
+      "name": "TODO: Ancient Village",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "a746",
+      "name": "TODO:  Hill;  Woods",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "6ff6",
+      "name": "TODO: Hidden Woods",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "7b4a",
+      "name": "TODO:  Mountain; Wild Waterfall",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "a1a2",
+      "name": "TODO: Abandoned Fields; Defended Mountain",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "4d78",
+      "name": "TODO: Barren, Big Cave;  Bridge",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "9fd0",
+      "name": "TODO:  Ravine;  River",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "74f2",
+      "name": "TODO: High Lair",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "6643",
+      "name": "TODO: Low Rapids",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "6058",
+      "name": "TODO:  Outpost",
+      "content": "Placeholder description."
     }
   ],
   "pins": [
@@ -188,6 +243,72 @@
       "locationId": "a8e5",
       "x": 17.8515625,
       "y": 35.078125
+    },
+    {
+      "id": "2b0c",
+      "locationId": "2b0c",
+      "x": 12.2265625,
+      "y": 32.5
+    },
+    {
+      "id": "81e8",
+      "locationId": "81e8",
+      "x": 19.8828125,
+      "y": 55.78125000000001
+    },
+    {
+      "id": "a746",
+      "locationId": "a746",
+      "x": 16.3671875,
+      "y": 49.140625
+    },
+    {
+      "id": "6ff6",
+      "locationId": "6ff6",
+      "x": 18.2421875,
+      "y": 50.78125
+    },
+    {
+      "id": "7b4a",
+      "locationId": "7b4a",
+      "x": 36.9140625,
+      "y": 42.890625
+    },
+    {
+      "id": "a1a2",
+      "locationId": "a1a2",
+      "x": 22.5390625,
+      "y": 55.703125
+    },
+    {
+      "id": "4d78",
+      "locationId": "4d78",
+      "x": 23.8671875,
+      "y": 33.828125
+    },
+    {
+      "id": "9fd0",
+      "locationId": "9fd0",
+      "x": 36.2109375,
+      "y": 39.53125
+    },
+    {
+      "id": "74f2",
+      "locationId": "74f2",
+      "x": 18.9453125,
+      "y": 27.578124999999996
+    },
+    {
+      "id": "6643",
+      "locationId": "6643",
+      "x": 11.6796875,
+      "y": 48.75
+    },
+    {
+      "id": "6058",
+      "locationId": "6058",
+      "x": 33.6328125,
+      "y": 35.15625
     }
   ]
 }
