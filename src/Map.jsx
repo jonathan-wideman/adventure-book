@@ -80,7 +80,7 @@ export function Map({
           )}
           onSelect={() => toggleSelect(pin.locationId)}
           selected={pin.id === selectedPin?.id}
-          ghost={toolMode === "move"}
+          ghost={toolMode === "move" || toolMode === "place"}
         />
       ))}
       {(toolMode === "move" || toolMode === "place") &&
