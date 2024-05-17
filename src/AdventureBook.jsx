@@ -8,6 +8,7 @@ import { LocationsList } from "./LocationsList";
 import { Button } from "./components/ui/button";
 import { LocationSelect } from "./LocationSelect";
 import { LocationToolbar } from "./LocationToolbar";
+import { cn } from "./lib/utils";
 
 export const DEFAULT_TOOL_MODE = "select";
 
@@ -58,12 +59,14 @@ export function AdventureBook() {
       <div className="sticky top-0 z-10 flex items-center justify-between gap-4 bg-zinc-900">
         <div className="flex items-center gap-4">
           <h1 className="p-4 text-xl font-bold">Adventure Book</h1>
-          <LocationSelect
-            locations={locations.data}
-            selectedLocation={selectedLocation}
-            toggleSelect={toggleSelect}
-          />
-          {selectedLocation ? (
+          {toolMode !== "edit" ? (
+            <LocationSelect
+              locations={locations.data}
+              selectedLocation={selectedLocation}
+              toggleSelect={toggleSelect}
+            />
+          ) : null}
+          {selectedLocation && toolMode !== "edit" ? (
             // FIXME: overflow isn't working
             // see https://www.bennadel.com/blog/3881-css-flexbox-overflow-text-overflow-ellipses-and-a-separation-of-concerns.htm
             <div className="overflow-hidden text-ellipsis">
@@ -71,7 +74,12 @@ export function AdventureBook() {
             </div>
           ) : null}
         </div>
-        <div className="flex items-center gap-4">
+        <div
+          className={cn(
+            "flex items-center gap-4",
+            toolMode === "edit" ? "grow" : "",
+          )}
+        >
           {selectedLocation ? (
             <LocationToolbar
               location={selectedLocation}

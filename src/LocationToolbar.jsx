@@ -127,18 +127,39 @@ export function LocationToolbar({
 
       {toolMode === "edit" ? (
         <>
-          <Button
-            onClick={() => onClickDeleteLocation(location.id)}
-            variant="secondary"
-          >
-            Delete
-          </Button>
-          <Button onClick={() => cancelEditMode()} variant="secondary">
-            Cancel
-          </Button>
-          <Button onClick={() => saveForm()} variant="secondary">
-            Save
-          </Button>
+          <div className="flex grow flex-col gap-2 py-2">
+            <div>
+              <Input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <Textarea
+                cols={40}
+                rows={10}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                className="w-full"
+              ></Textarea>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button
+                onClick={() => onClickDeleteLocation(location.id)}
+                variant="secondary"
+              >
+                Delete
+              </Button>
+              <Button onClick={() => cancelEditMode()} variant="secondary">
+                Cancel
+              </Button>
+              <Button onClick={() => saveForm()} variant="secondary">
+                Save
+              </Button>
+            </div>
+          </div>
         </>
       ) : null}
     </>
