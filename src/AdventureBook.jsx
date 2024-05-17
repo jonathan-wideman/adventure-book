@@ -130,6 +130,7 @@ export function AdventureBook() {
         </>
         // TODO: convert styles to tailwind
         // TODO: add shadcdn-ui
+        // FIXME: map pins should not be selectable when in place, move modes
       )} */}
     </div>
   );

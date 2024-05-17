@@ -21,6 +21,7 @@
     "cmdk": "^1.0.0",
     "json-server": "1.0.0-alpha.23",
     "lucide-react": "^0.378.0",
+    "random-js": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",

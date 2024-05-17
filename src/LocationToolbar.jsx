@@ -8,6 +8,10 @@ import { useDeleteLocation } from "./hooks/queries/useDeleteLocation";
 import { Button } from "./components/ui/button";
 import { Textarea } from "./components/ui/textarea";
 import { Input } from "./components/ui/input";
+import {
+  formatFeaturesWithDescriptors,
+  randomFeaturesWithDescriptors,
+} from "./lib/generators/randomLocations";
 
 export function LocationToolbar({
   location,
@@ -128,13 +132,33 @@ export function LocationToolbar({
       {toolMode === "edit" ? (
         <>
           <div className="flex grow flex-col gap-2 py-2">
-            <div>
+            <div className="flex gap-2">
               <Input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full"
+                className="grow"
               />
+              <Button
+                onClick={() => {
+                  setName(
+                    `TODO: ${formatFeaturesWithDescriptors(randomFeaturesWithDescriptors())}`,
+                  );
+                }}
+                variant="secondary"
+              >
+                Random
+              </Button>
+              <Button
+                onClick={() => {
+                  setName((prev) =>
+                    prev.startsWith("TODO: ") ? prev.slice(6) : `TODO: ${prev}`,
+                  );
+                }}
+                variant="secondary"
+              >
+                TODO
+              </Button>
             </div>
             <div>
               <Textarea
