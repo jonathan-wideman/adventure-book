@@ -1,27 +1,27 @@
 {
   "locations": [
     {
-      "id": "1",
+      "id": "5fc9",
       "name": "River; Exposed Hill",
       "content": "Rocky rapids divide the wind-swept banks. Scree slopes upward towards a small escarpment."
     },
     {
-      "id": "2",
+      "id": "33cb",
       "name": "Caravan; Ridge",
       "content": "A stoic procession wends their way towards the valley. Several raise their eyes to regard you warily. The last traveler nods to you and mutters something vaguely congenial as you pass.\n\nFurther up the rocky ridge, you spy a small outpost."
     },
     {
-      "id": "3",
+      "id": "2f0a",
       "name": "Isolated Waste",
       "content": "You traverse a barren expanse of fine silty soil which clings damply to your boots. A few small birds pick amongst the muck, though you see no foliage where they might retreat.\n\nTo the north, you the glint of a river breaks the monotony. To the south, a line of mountains rise in the distance beyond the plain."
     },
     {
-      "id": "4",
+      "id": "0e6c",
       "name": "Shadowy Ravine",
       "content": "The river rushes below as you scale the side of this gloomy ravine. Shadow seems to hang heavily from thin, deeply scoured crevices in the rock. You shiver in the chill mist that slowly rises from the turbulent water."
     },
     {
-      "id": "5",
+      "id": "3db4",
       "name": "Grim River",
       "content": "Dark currents glide silently between withered banks. The opposite shore is not too distant."
     },
@@ -39,36 +39,81 @@
       "id": "f540",
       "name": "TODO: Mountain Peak",
       "content": "Placeholder description."
+    },
+    {
+      "id": "f194",
+      "name": "TODO: Savage Anomaly",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "92c3",
+      "name": "TODO: Lush Swamp",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "9717",
+      "name": "TODO: Blocked Plain",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "d39e",
+      "name": "TODO: Forest; Hill",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "6ed0",
+      "name": "TODO: Coast; Hideout",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "fc2c",
+      "name": "TODO: Glade",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "096e",
+      "name": "TODO: Marsh",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "4e00",
+      "name": "TODO: Occupied Valley",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "a8e5",
+      "name": "TODO: Withered Fen",
+      "content": "Placeholder description."
     }
   ],
   "pins": [
     {
-      "id": "1",
-      "locationId": "1",
+      "id": "5fc9",
+      "locationId": "5fc9",
       "x": 30.0390625,
       "y": 34.803466796875
     },
     {
-      "id": "2",
-      "locationId": "2",
+      "id": "33cb",
+      "locationId": "33cb",
       "x": 32.4609375,
       "y": 34.569091796875
     },
     {
-      "id": "3",
-      "locationId": "3",
+      "id": "2f0a",
+      "locationId": "2f0a",
       "x": 22.1875,
       "y": 37.928466796875
     },
     {
-      "id": "4",
-      "locationId": "4",
+      "id": "0e6c",
+      "locationId": "0e6c",
       "x": 37.8515625,
       "y": 41.287841796875
     },
     {
-      "id": "5",
-      "locationId": "5",
+      "id": "3db4",
+      "locationId": "3db4",
       "x": 21.015625,
       "y": 34.959716796875
     },
@@ -89,6 +134,60 @@
       "locationId": "f540",
       "x": 32.1875,
       "y": 41.444091796875
+    },
+    {
+      "id": "f194",
+      "locationId": "f194",
+      "x": 23.59192348565356,
+      "y": 27.20510095642933
+    },
+    {
+      "id": "92c3",
+      "locationId": "92c3",
+      "x": 18.4765625,
+      "y": 59.21875
+    },
+    {
+      "id": "9717",
+      "locationId": "9717",
+      "x": 13.0859375,
+      "y": 43.671875
+    },
+    {
+      "id": "d39e",
+      "locationId": "d39e",
+      "x": 9.8828125,
+      "y": 33.59375
+    },
+    {
+      "id": "096e",
+      "locationId": "096e",
+      "x": 15.117187500000002,
+      "y": 58.203125
+    },
+    {
+      "id": "6ed0",
+      "locationId": "6ed0",
+      "x": 29.1015625,
+      "y": 24.375
+    },
+    {
+      "id": "fc2c",
+      "locationId": "fc2c",
+      "x": 11.5234375,
+      "y": 33.203125
+    },
+    {
+      "id": "4e00",
+      "locationId": "4e00",
+      "x": 34.6484375,
+      "y": 32.34375
+    },
+    {
+      "id": "a8e5",
+      "locationId": "a8e5",
+      "x": 17.8515625,
+      "y": 35.078125
     }
   ]
 }
