@@ -109,7 +109,7 @@ export function AdventureBook() {
         />
       </div>
 
-      {selectedLocation ? (
+      {/* {selectedLocation ? (
         <Location
           location={selectedLocation}
           pin={selectedPin}
@@ -130,7 +130,7 @@ export function AdventureBook() {
         </>
         // TODO: convert styles to tailwind
         // TODO: add shadcdn-ui
-      )}
+      )} */}
     </div>
   );
 }
