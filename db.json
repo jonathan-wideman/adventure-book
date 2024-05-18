@@ -139,6 +139,141 @@
       "id": "6058",
       "name": "TODO:  Outpost",
       "content": "Placeholder description."
+    },
+    {
+      "id": "1800",
+      "name": "TODO:  Mountain",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "0efa",
+      "name": "TODO: Civilized Lake",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "db56",
+      "name": "TODO:  Forest; Isolated River",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "23be",
+      "name": "TODO:  Moor",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "c36e",
+      "name": "TODO:  Rapids",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "1abb",
+      "name": "TODO: Remote Steading",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "5aad",
+      "name": "TODO: Forgotten Cliff;  Camp",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "0a63",
+      "name": "TODO: Broken Woods",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "9a36",
+      "name": "TODO: Perilous River Ford; Rich Ravine",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "c4f5",
+      "name": "TODO:  Thicket",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "6151",
+      "name": "TODO: Fertile Ravine",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "da3d",
+      "name": "TODO: Savage Mountain",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "0064",
+      "name": "TODO: Dense Caravan",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "6da6",
+      "name": "TODO:  Trail",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "af6c",
+      "name": "TODO: Empty Valley",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "5e67",
+      "name": "TODO:  Road",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "8faa",
+      "name": "TODO: Big Outpost",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "4b5a",
+      "name": "TODO: Small River",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "bff6",
+      "name": "TODO: Wild Mountain",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "07e0",
+      "name": "TODO: Forgotten Foothills",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "9c20",
+      "name": "TODO:  Pass;  River",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "e9d8",
+      "name": "TODO:  Mine",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "5fe8",
+      "name": "TODO: Peaceful Cave",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "5ea3",
+      "name": "TODO: Cold Ruin",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "2aeb",
+      "name": "TODO:  Grove",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "7c69",
+      "name": "TODO: Broken Coast",
+      "content": "Placeholder description."
+    },
+    {
+      "id": "5608",
+      "name": "TODO:  Tree; Wide Mountain",
+      "content": "Placeholder description."
     }
   ],
   "pins": [
@@ -309,6 +444,168 @@
       "locationId": "6058",
       "x": 33.6328125,
       "y": 35.15625
+    },
+    {
+      "id": "1800",
+      "locationId": "1800",
+      "x": 17.9296875,
+      "y": 29.296875
+    },
+    {
+      "id": "0efa",
+      "locationId": "0efa",
+      "x": 29.8046875,
+      "y": 56.484375
+    },
+    {
+      "id": "db56",
+      "locationId": "db56",
+      "x": 28.3203125,
+      "y": 59.21875
+    },
+    {
+      "id": "23be",
+      "locationId": "23be",
+      "x": 26.2890625,
+      "y": 35.234375
+    },
+    {
+      "id": "c36e",
+      "locationId": "c36e",
+      "x": 31.289062499999996,
+      "y": 38.90625
+    },
+    {
+      "id": "1abb",
+      "locationId": "1abb",
+      "x": 14.1015625,
+      "y": 25.546875000000004
+    },
+    {
+      "id": "5aad",
+      "locationId": "5aad",
+      "x": 26.210937499999996,
+      "y": 55.00000000000001
+    },
+    {
+      "id": "0a63",
+      "locationId": "0a63",
+      "x": 26.210937499999996,
+      "y": 59.06249999999999
+    },
+    {
+      "id": "9a36",
+      "locationId": "9a36",
+      "x": 33.7890625,
+      "y": 39.375
+    },
+    {
+      "id": "c4f5",
+      "locationId": "c4f5",
+      "x": 24.6484375,
+      "y": 56.015625
+    },
+    {
+      "id": "6151",
+      "locationId": "6151",
+      "x": 15.507812500000002,
+      "y": 27.187499999999996
+    },
+    {
+      "id": "da3d",
+      "locationId": "da3d",
+      "x": 20.8984375,
+      "y": 28.203125
+    },
+    {
+      "id": "0064",
+      "locationId": "0064",
+      "x": 11.5234375,
+      "y": 41.953125
+    },
+    {
+      "id": "6da6",
+      "locationId": "6da6",
+      "x": 13.2421875,
+      "y": 45.703125
+    },
+    {
+      "id": "af6c",
+      "locationId": "af6c",
+      "x": 29.1796875,
+      "y": 39.765625
+    },
+    {
+      "id": "5e67",
+      "locationId": "5e67",
+      "x": 9.5703125,
+      "y": 40.703125
+    },
+    {
+      "id": "8faa",
+      "locationId": "8faa",
+      "x": 34.8046875,
+      "y": 30.703124999999996
+    },
+    {
+      "id": "4b5a",
+      "locationId": "4b5a",
+      "x": 13.164062500000002,
+      "y": 34.53125
+    },
+    {
+      "id": "bff6",
+      "locationId": "bff6",
+      "x": 23.3984375,
+      "y": 48.75
+    },
+    {
+      "id": "07e0",
+      "locationId": "07e0",
+      "x": 24.2578125,
+      "y": 24.6875
+    },
+    {
+      "id": "9c20",
+      "locationId": "9c20",
+      "x": 25.742187500000004,
+      "y": 50.390625
+    },
+    {
+      "id": "e9d8",
+      "locationId": "e9d8",
+      "x": 34.1796875,
+      "y": 37.5
+    },
+    {
+      "id": "5fe8",
+      "locationId": "5fe8",
+      "x": 15.6640625,
+      "y": 31.328125
+    },
+    {
+      "id": "5ea3",
+      "locationId": "5ea3",
+      "x": 10.6640625,
+      "y": 16.953125
+    },
+    {
+      "id": "2aeb",
+      "locationId": "2aeb",
+      "x": 8.8671875,
+      "y": 37.109375
+    },
+    {
+      "id": "7c69",
+      "locationId": "7c69",
+      "x": 5.7421875,
+      "y": 40.46875
+    },
+    {
+      "id": "5608",
+      "locationId": "5608",
+      "x": 20.1953125,
+      "y": 48.90625
     }
   ]
 }
