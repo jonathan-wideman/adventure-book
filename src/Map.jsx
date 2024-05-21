@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, Fragment } from "react";
 import mapImage from "./assets/map-regions.png";
 import { useUpdatePin } from "./hooks/queries/useUpdatePin";
 import useMousePosition from "./hooks/useMousePosition";
@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { PinMarker } from "./PinMarker";
 import { useAddPin } from "./hooks/queries/useAddPin";
 import { clamp } from "./util";
+import { PinConnections } from "./PinConnections";
 
 export function Map({
   locations,
@@ -72,16 +73,19 @@ export function Map({
         onClick={onClickMap}
       />
       {pins.data?.map((pin) => (
-        <MapPin
-          key={pin.id}
-          pin={pin}
-          location={locations.data?.find(
-            (location) => location.id === pin.locationId,
-          )}
-          onSelect={() => toggleSelect(pin.locationId)}
-          selected={pin.id === selectedPin?.id}
-          ghost={toolMode === "move" || toolMode === "place"}
-        />
+        <Fragment key={pin.id}>
+          <MapPin
+            // key={pin.id}
+            pin={pin}
+            location={locations.data?.find(
+              (location) => location.id === pin.locationId,
+            )}
+            onSelect={() => toggleSelect(pin.locationId)}
+            selected={pin.id === selectedPin?.id}
+            ghost={toolMode === "move" || toolMode === "place"}
+          />
+          <PinConnections pin={pin} connections={pin.connections ?? []} />
+        </Fragment>
       ))}
       {(toolMode === "move" || toolMode === "place") &&
         mouseMapPosition.isOnMap && (
