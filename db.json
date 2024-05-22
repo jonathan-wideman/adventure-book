@@ -274,6 +274,11 @@
       "id": "5608",
       "name": "TODO:  Tree; Wide Mountain",
       "content": "Placeholder description."
+    },
+    {
+      "id": "a3e4",
+      "name": "TODO:  Moor; Ruined, Barren Tree",
+      "content": "Placeholder description."
     }
   ],
   "pins": [
@@ -282,7 +287,13 @@
       "locationId": "5fc9",
       "x": 30.0390625,
       "y": 34.803466796875,
-      "connections": ["33cb", "2f0a", "0e6c", "3db4", "9217"]
+      "connections": [
+        "33cb",
+        "2f0a",
+        "0e6c",
+        "3db4",
+        "9217"
+      ]
     },
     {
       "id": "33cb",
@@ -607,6 +618,12 @@
       "locationId": "5608",
       "x": 20.1953125,
       "y": 48.90625
+    },
+    {
+      "id": "a3e4",
+      "locationId": "a3e4",
+      "x": 9.3359375,
+      "y": 26.25
     }
   ]
 }
