@@ -1,4 +1,4 @@
-import { usePins } from "./hooks/queries/usePins";
+import { usePins } from "../../hooks/queries/usePins";
 
 export function PinConnections({ pin, connections }) {
   return (

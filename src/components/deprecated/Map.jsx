@@ -1,12 +1,12 @@
 import { useMemo, Fragment } from "react";
 import mapImage from "./assets/map-regions.png";
-import { useUpdatePin } from "./hooks/queries/useUpdatePin";
-import useMousePosition from "./hooks/useMousePosition";
+import { useUpdatePin } from "../../hooks/queries/useUpdatePin";
+import useMousePosition from "../../hooks/useMousePosition";
 import { MapPin } from "./MapPin";
 import { useRef } from "react";
 import { PinMarker } from "./PinMarker";
-import { useAddPin } from "./hooks/queries/useAddPin";
-import { clamp } from "./util";
+import { useAddPin } from "../../hooks/queries/useAddPin";
+import { clamp } from "../../util";
 import { PinConnections } from "./PinConnections";
 
 export function Map({

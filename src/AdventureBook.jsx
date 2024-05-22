@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { Location } from "./Location";
-import { Map } from "./Map";
 import { useLocations } from "./hooks/queries/useLocations";
 import { usePins } from "./hooks/queries/usePins";
 import { useAddLocation } from "./hooks/queries/useAddLocation";
-import { LocationsList } from "./LocationsList";
 import { Button } from "./components/ui/button";
 import { LocationSelect } from "./LocationSelect";
 import { LocationToolbar } from "./LocationToolbar";
@@ -108,7 +105,7 @@ export function AdventureBook() {
         setToolMode={setToolMode}
       />
 
-      <div className="relative w-full">
+      {/* <div className="relative w-full">
         <Map
           locations={locations}
           pins={pins}
@@ -119,7 +116,7 @@ export function AdventureBook() {
           toolMode={toolMode}
           setToolMode={setToolMode}
         />
-      </div>
+      </div> */}
 
       {/* {selectedLocation ? (
         <Location
