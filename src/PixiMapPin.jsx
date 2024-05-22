@@ -18,7 +18,7 @@ export function PixiMapPin({
       g.drawCircle(
         (pin.x / 100) * PIXI_MAP_SCALE,
         (pin.y / 100) * PIXI_MAP_SCALE,
-        selected ? 5 : 3,
+        selected ? 6 : 4,
       );
       g.endFill();
     },
