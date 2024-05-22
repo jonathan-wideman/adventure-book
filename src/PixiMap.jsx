@@ -1,10 +1,12 @@
 // import { BlurFilter } from 'pixi.js';
-import { Stage, Container, Sprite, Text } from "@pixi/react";
+import { Stage, Container, Text } from "@pixi/react";
 import { Fragment } from "react";
 import { PixiMapPin } from "./PixiMapPin";
 import { PixiMapConnection } from "./PixiMapConnection";
 import { PixiMapBackground } from "./PixiMapBackground";
-import { useCallback } from "react";
+import { useState } from "react";
+import { useUpdatePin } from "./hooks/queries/useUpdatePin";
+import { useAddPin } from "./hooks/queries/useAddPin";
 
 export const PIXI_MAP_SCALE = 1280;
 
@@ -19,23 +21,13 @@ export const PixiMap = ({
   setToolMode,
 }) => {
   // const blurFilter = useMemo(() => new BlurFilter(4), []);
+  const updatePinPosition = useUpdatePin();
+  const addPin = useAddPin();
+
+  const [mouseMapPosition, setMouseMapPosition] = useState({ x: 0, y: 0 });
 
   const holdingPin = toolMode === "move" || toolMode === "place";
   const canInteractPins = !holdingPin;
-
-  // const onMove = React.useCallback((e) => {
-  //   // if (isDragging && sprite.current) {
-  //   //   setPosition(e.data.getLocalPosition(sprite.current.parent));
-  //   // }
-  //   console.log("move", e);
-  // }, []);
-
-  const onDown = useCallback((e) => {
-    // if (isDragging && sprite.current) {
-    //   setPosition(e.data.getLocalPosition(sprite.current.parent));
-    // }
-    console.log("click", e);
-  }, []);
 
   return (
     <Stage
@@ -46,19 +38,55 @@ export const PixiMap = ({
       raf={false}
       renderOnComponentChange={true}
     >
-      {/* <Container
+      <Container
         x={0}
         y={0}
-        interactive={true}
-        pointerdown={() => {
-          console.log("click");
+        eventMode={"static"}
+        pointermove={(e) => {
+          const pos = {
+            x: (e.data.global.x * 100) / PIXI_MAP_SCALE,
+            y: (e.data.global.y * 100) / PIXI_MAP_SCALE,
+          };
+          setMouseMapPosition({ ...pos });
         }}
-      > */}
-      <PixiMapBackground />
+        pointerdown={() => {
+          if (toolMode === "move") {
+            console.log("move", mouseMapPosition);
+            updatePinPosition.mutate({
+              pin: selectedPin,
+              newPosition: { x: mouseMapPosition.x, y: mouseMapPosition.y },
+            });
+            setToolMode("select");
+            return;
+          }
+
+          if (toolMode === "place") {
+            console.log("place", mouseMapPosition);
+            addPin.mutate({
+              locationId: selectedLocation.id,
+              x: mouseMapPosition.x,
+              y: mouseMapPosition.y,
+            });
+            setToolMode("select");
+            return;
+          }
+
+          console.log("deselect", mouseMapPosition);
+          setToolMode("select");
+          deselect();
+        }}
+      >
+        <PixiMapBackground />
+      </Container>
 
       {pins.map((pin) => (
         <Fragment key={pin.id}>
-          <PixiMapPin pin={pin} interactive={canInteractPins} />
+          <PixiMapPin
+            pin={pin}
+            selected={selectedPin?.id === pin.id}
+            onSelect={() => toggleSelect(pin.id)}
+            interactive={canInteractPins}
+          />
 
           {pin.connections?.map((connection) => {
             const connectedPin = pins.find((p) => p.id === connection);
@@ -73,8 +101,8 @@ export const PixiMap = ({
         </Fragment>
       ))}
 
-      {holdingPin && selectedPin && (
-        <PixiMapPin pin={{ ...selectedPin, x: 0, y: 0 }} interactive={true} />
+      {holdingPin && (
+        <PixiMapPin pin={{ ...mouseMapPosition }} interactive={false} />
       )}
 
       {/* <Container x={0} y={0}>
@@ -84,7 +112,6 @@ export const PixiMap = ({
           // filters={[blurFilter]}
         />
       </Container> */}
-      {/* </Container> */}
     </Stage>
   );
 };

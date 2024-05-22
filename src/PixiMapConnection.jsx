@@ -5,6 +5,7 @@ export function PixiMapConnection({ pin, connectedPin }) {
   return (
     <Graphics
       draw={(g) => {
+        g.clear();
         g.lineStyle(1, "cornflowerblue");
         g.moveTo(
           (pin.x / 100) * PIXI_MAP_SCALE,

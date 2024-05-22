@@ -11,10 +11,6 @@ export function PixiMapBackground() {
       anchor={{ x: 0, y: 0 }}
       width={PIXI_MAP_SCALE}
       height={PIXI_MAP_SCALE}
-      eventMode="static"
-      pointerdown={() => {
-        console.log("click");
-      }}
     />
   );
 }
