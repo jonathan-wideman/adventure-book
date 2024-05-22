@@ -1,6 +1,7 @@
 import { Graphics } from "@pixi/react";
 import { PIXI_MAP_SCALE } from "./PixiMap";
 import { useCallback } from "react";
+import { useState } from "react";
 
 export function PixiMapPin({
   pin,
@@ -8,6 +9,9 @@ export function PixiMapPin({
   onSelect = undefined,
   interactive = false,
 }) {
+  // TODO: Add a hover effect
+  const [hover, setHover] = useState(false);
+
   const draw = useCallback(
     (g) => {
       g.clear();
@@ -18,11 +22,11 @@ export function PixiMapPin({
       g.drawCircle(
         (pin.x / 100) * PIXI_MAP_SCALE,
         (pin.y / 100) * PIXI_MAP_SCALE,
-        selected ? 6 : 4,
+        selected || hover ? 6 : 4,
       );
       g.endFill();
     },
-    [selected, interactive, pin],
+    [selected, interactive, pin, hover],
   );
 
   return (
@@ -37,6 +41,8 @@ export function PixiMapPin({
             }
           : undefined
       }
+      pointerover={interactive ? () => setHover(true) : undefined}
+      pointerout={interactive ? () => setHover(false) : undefined}
     />
   );
 }
