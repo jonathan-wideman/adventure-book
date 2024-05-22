@@ -88,16 +88,17 @@ export const PixiMap = ({
             interactive={canInteractPins}
           />
 
-          {pin.connections?.map((connection) => {
-            const connectedPin = pins.find((p) => p.id === connection);
-            return (
-              <PixiMapConnection
-                pin={pin}
-                connectedPin={connectedPin}
-                key={`${pin.id}-${connectedPin.id}`}
-              />
-            );
-          })}
+          {selectedPin?.id === pin.id &&
+            pin.connections?.map((connection) => {
+              const connectedPin = pins.find((p) => p.id === connection);
+              return (
+                <PixiMapConnection
+                  pin={pin}
+                  connectedPin={connectedPin}
+                  key={`${pin.id}-${connectedPin.id}`}
+                />
+              );
+            })}
         </Fragment>
       ))}
 
