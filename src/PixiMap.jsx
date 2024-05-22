@@ -51,7 +51,6 @@ export const PixiMap = ({
         }}
         pointerdown={() => {
           if (toolMode === "move") {
-            console.log("move", mouseMapPosition);
             updatePinPosition.mutate({
               pin: selectedPin,
               newPosition: { x: mouseMapPosition.x, y: mouseMapPosition.y },
@@ -61,7 +60,6 @@ export const PixiMap = ({
           }
 
           if (toolMode === "place") {
-            console.log("place", mouseMapPosition);
             addPin.mutate({
               locationId: selectedLocation.id,
               x: mouseMapPosition.x,
@@ -71,7 +69,6 @@ export const PixiMap = ({
             return;
           }
 
-          console.log("deselect", mouseMapPosition);
           setToolMode("select");
           deselect();
         }}
