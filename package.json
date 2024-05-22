@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.13",
+    "@pixi/react": "^7.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
@@ -21,6 +22,7 @@
     "cmdk": "^1.0.0",
     "json-server": "1.0.0-alpha.23",
     "lucide-react": "^0.378.0",
+    "pixi.js": "^7.4.2",
     "random-js": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

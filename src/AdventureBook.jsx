@@ -9,6 +9,7 @@ import { Button } from "./components/ui/button";
 import { LocationSelect } from "./LocationSelect";
 import { LocationToolbar } from "./LocationToolbar";
 import { cn } from "./lib/utils";
+import { PixiMap } from "./PixiMap";
 
 export const DEFAULT_TOOL_MODE = "select";
 
@@ -95,6 +96,17 @@ export function AdventureBook() {
           )}
         </div>
       </div>
+
+      <PixiMap
+        locations={locations}
+        pins={pins?.data ?? []}
+        selectedLocation={selectedLocation}
+        selectedPin={selectedPin}
+        toggleSelect={toggleSelect}
+        deselect={deselect}
+        toolMode={toolMode}
+        setToolMode={setToolMode}
+      />
 
       <div className="relative w-full">
         <Map

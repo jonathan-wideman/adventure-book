@@ -1,3 +1,8 @@
 .bg-search-icon {
   background-image: url("./search.svg");
 }
+
+.pixi-map {
+  width: 100% !important;
+  height: unset !important;
+}
