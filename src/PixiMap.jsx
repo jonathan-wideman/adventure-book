@@ -96,17 +96,31 @@ export const PixiMap = ({
               interactive={canInteractPins}
             />
 
-            {(selectedPin?.id === pin.id || hoveredPinId === pin.id) &&
-              pin.connections?.map((connection) => {
-                const connectedPin = pins.find((p) => p.id === connection);
-                return (
-                  <PixiMapConnection
-                    pin={pin}
-                    connectedPin={connectedPin}
-                    key={`${pin.id}-${connectedPin.id}`}
-                  />
-                );
-              })}
+            {(selectedPin?.id === pin.id || hoveredPinId === pin.id) && (
+              <>
+                {pin.connections?.map((connection) => {
+                  const connectedPin = pins.find((p) => p.id === connection);
+                  return (
+                    <PixiMapConnection
+                      pin={pin}
+                      connectedPin={connectedPin}
+                      key={`${pin.id}-${connectedPin.id}`}
+                    />
+                  );
+                })}
+                <Text
+                  text={
+                    locations.find((location) => location.id === pin.locationId)
+                      ?.name ?? "~ Unknown Location ~"
+                  }
+                  x={(pin.x / 100) * PIXI_MAP_SCALE}
+                  y={(pin.y / 100) * PIXI_MAP_SCALE - 10}
+                  anchor={{ x: 0.5, y: 1 }}
+                  style={{ fontSize: 14, fontWeight: "bold" }}
+                  // filters={[blurFilter]}
+                />
+              </>
+            )}
           </Fragment>
         ))}
 
@@ -114,14 +128,6 @@ export const PixiMap = ({
           <PixiMapPin pin={{ ...mouseMapPosition }} interactive={false} />
         )}
       </Container>
-
-      {/* <Container x={0} y={0}>
-        <Text
-          text="Hello World"
-          anchor={{ x: 0, y: 0 }}
-          // filters={[blurFilter]}
-        />
-      </Container> */}
     </Stage>
   );
 };

@@ -102,7 +102,7 @@ export function AdventureBook() {
       </div>
 
       <PixiMap
-        locations={locations}
+        locations={locations?.data ?? []}
         pins={pins?.data ?? []}
         selectedLocation={selectedLocation}
         selectedPin={selectedPin}
