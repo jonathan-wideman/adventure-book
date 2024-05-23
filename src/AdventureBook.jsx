@@ -16,6 +16,7 @@ export function AdventureBook() {
 
   const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [toolMode, setToolMode] = useState(DEFAULT_TOOL_MODE); // 'select' | 'edit' | 'move' | 'place'
+  const [mapLayer, setMapLayer] = useState(0);
 
   const selectedLocation = locations.data?.find(
     (loc) => loc.id === selectedLocationId,
@@ -91,6 +92,12 @@ export function AdventureBook() {
               Add Location
             </Button>
           )}
+          <Button
+            onClick={() => setMapLayer((mapLayer + 1) % 4)}
+            variant="secondary"
+          >
+            ☼
+          </Button>
         </div>
       </div>
 
@@ -103,6 +110,7 @@ export function AdventureBook() {
         deselect={deselect}
         toolMode={toolMode}
         setToolMode={setToolMode}
+        layer={mapLayer}
       />
 
       {/* <div className="relative w-full">

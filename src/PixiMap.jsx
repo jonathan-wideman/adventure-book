@@ -18,6 +18,7 @@ export const PixiMap = ({
   deselect,
   toolMode,
   setToolMode,
+  layer,
 }) => {
   // const blurFilter = useMemo(() => new BlurFilter(1), []);
   const updatePinPosition = useUpdatePin();
@@ -77,7 +78,7 @@ export const PixiMap = ({
         pointermove={onPointerMove}
         pointerdown={onClickMap}
       >
-        <PixiMapBackground />
+        <PixiMapBackground layer={layer} />
       </Container>
 
       <Container
