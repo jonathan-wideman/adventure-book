@@ -30,6 +30,38 @@ export const PixiMap = ({
   const holdingPin = toolMode === "move" || toolMode === "place";
   const canInteractPins = !holdingPin;
 
+  const onPointerMove = (e) => {
+    const pos = {
+      x: (e.data.global.x * 100) / PIXI_MAP_SCALE,
+      y: (e.data.global.y * 100) / PIXI_MAP_SCALE,
+    };
+    setMouseMapPosition({ ...pos });
+  };
+
+  const onClickMap = () => {
+    if (toolMode === "move") {
+      updatePinPosition.mutate({
+        pin: selectedPin,
+        newPosition: { x: mouseMapPosition.x, y: mouseMapPosition.y },
+      });
+      setToolMode("select");
+      return;
+    }
+
+    if (toolMode === "place") {
+      addPin.mutate({
+        locationId: selectedLocation.id,
+        x: mouseMapPosition.x,
+        y: mouseMapPosition.y,
+      });
+      setToolMode("select");
+      return;
+    }
+
+    setToolMode("select");
+    deselect();
+  };
+
   return (
     <Stage
       width={PIXI_MAP_SCALE}
@@ -43,36 +75,8 @@ export const PixiMap = ({
         x={0}
         y={0}
         eventMode={"static"}
-        pointermove={(e) => {
-          const pos = {
-            x: (e.data.global.x * 100) / PIXI_MAP_SCALE,
-            y: (e.data.global.y * 100) / PIXI_MAP_SCALE,
-          };
-          setMouseMapPosition({ ...pos });
-        }}
-        pointerdown={() => {
-          if (toolMode === "move") {
-            updatePinPosition.mutate({
-              pin: selectedPin,
-              newPosition: { x: mouseMapPosition.x, y: mouseMapPosition.y },
-            });
-            setToolMode("select");
-            return;
-          }
-
-          if (toolMode === "place") {
-            addPin.mutate({
-              locationId: selectedLocation.id,
-              x: mouseMapPosition.x,
-              y: mouseMapPosition.y,
-            });
-            setToolMode("select");
-            return;
-          }
-
-          setToolMode("select");
-          deselect();
-        }}
+        pointermove={onPointerMove}
+        pointerdown={onClickMap}
       >
         <PixiMapBackground />
       </Container>
