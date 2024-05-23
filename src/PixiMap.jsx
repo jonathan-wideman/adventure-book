@@ -1,10 +1,9 @@
-// import { BlurFilter } from 'pixi.js';
+// import { BlurFilter } from "pixi.js";
 import { Stage, Container, Text } from "@pixi/react";
-import { Fragment } from "react";
+import { Fragment, useState, useMemo } from "react";
 import { PixiMapPin } from "./PixiMapPin";
 import { PixiMapConnection } from "./PixiMapConnection";
 import { PixiMapBackground } from "./PixiMapBackground";
-import { useState } from "react";
 import { useUpdatePin } from "./hooks/queries/useUpdatePin";
 import { useAddPin } from "./hooks/queries/useAddPin";
 
@@ -20,7 +19,7 @@ export const PixiMap = ({
   toolMode,
   setToolMode,
 }) => {
-  // const blurFilter = useMemo(() => new BlurFilter(4), []);
+  // const blurFilter = useMemo(() => new BlurFilter(1), []);
   const updatePinPosition = useUpdatePin();
   const addPin = useAddPin();
 
@@ -66,7 +65,7 @@ export const PixiMap = ({
     <Stage
       width={PIXI_MAP_SCALE}
       height={PIXI_MAP_SCALE}
-      options={{ background: 0xffffff }}
+      options={{ antialias: true, background: 0xffffff }}
       className="pixi-map aspect-square"
       raf={false}
       renderOnComponentChange={true}
@@ -81,35 +80,39 @@ export const PixiMap = ({
         <PixiMapBackground />
       </Container>
 
-      {pins.map((pin) => (
-        <Fragment key={pin.id}>
-          <PixiMapPin
-            pin={pin}
-            selected={selectedPin?.id === pin.id}
-            onSelect={() => toggleSelect(pin.id)}
-            hovered={hoveredPinId === pin.id}
-            onPointerOver={() => setHoveredPinId(pin.id)}
-            onPointerOut={() => setHoveredPinId(null)}
-            interactive={canInteractPins}
-          />
+      <Container
+      // filters={[blurFilter]}
+      >
+        {pins.map((pin) => (
+          <Fragment key={pin.id}>
+            <PixiMapPin
+              pin={pin}
+              selected={selectedPin?.id === pin.id}
+              onSelect={() => toggleSelect(pin.id)}
+              hovered={hoveredPinId === pin.id}
+              onPointerOver={() => setHoveredPinId(pin.id)}
+              onPointerOut={() => setHoveredPinId(null)}
+              interactive={canInteractPins}
+            />
 
-          {(selectedPin?.id === pin.id || hoveredPinId === pin.id) &&
-            pin.connections?.map((connection) => {
-              const connectedPin = pins.find((p) => p.id === connection);
-              return (
-                <PixiMapConnection
-                  pin={pin}
-                  connectedPin={connectedPin}
-                  key={`${pin.id}-${connectedPin.id}`}
-                />
-              );
-            })}
-        </Fragment>
-      ))}
+            {(selectedPin?.id === pin.id || hoveredPinId === pin.id) &&
+              pin.connections?.map((connection) => {
+                const connectedPin = pins.find((p) => p.id === connection);
+                return (
+                  <PixiMapConnection
+                    pin={pin}
+                    connectedPin={connectedPin}
+                    key={`${pin.id}-${connectedPin.id}`}
+                  />
+                );
+              })}
+          </Fragment>
+        ))}
 
-      {holdingPin && (
-        <PixiMapPin pin={{ ...mouseMapPosition }} interactive={false} />
-      )}
+        {holdingPin && (
+          <PixiMapPin pin={{ ...mouseMapPosition }} interactive={false} />
+        )}
+      </Container>
 
       {/* <Container x={0} y={0}>
         <Text
