@@ -25,6 +25,7 @@ export const PixiMap = ({
   const addPin = useAddPin();
 
   const [mouseMapPosition, setMouseMapPosition] = useState({ x: 0, y: 0 });
+  const [hoveredPinId, setHoveredPinId] = useState(null);
 
   const holdingPin = toolMode === "move" || toolMode === "place";
   const canInteractPins = !holdingPin;
@@ -82,10 +83,13 @@ export const PixiMap = ({
             pin={pin}
             selected={selectedPin?.id === pin.id}
             onSelect={() => toggleSelect(pin.id)}
+            hovered={hoveredPinId === pin.id}
+            onPointerOver={() => setHoveredPinId(pin.id)}
+            onPointerOut={() => setHoveredPinId(null)}
             interactive={canInteractPins}
           />
 
-          {selectedPin?.id === pin.id &&
+          {(selectedPin?.id === pin.id || hoveredPinId === pin.id) &&
             pin.connections?.map((connection) => {
               const connectedPin = pins.find((p) => p.id === connection);
               return (

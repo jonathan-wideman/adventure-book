@@ -7,11 +7,11 @@ export function PixiMapPin({
   pin,
   selected,
   onSelect = undefined,
+  hovered,
+  onPointerOver = undefined,
+  onPointerOut = undefined,
   interactive = false,
 }) {
-  // TODO: Add a hover effect
-  const [hover, setHover] = useState(false);
-
   const draw = useCallback(
     (g) => {
       g.clear();
@@ -22,11 +22,11 @@ export function PixiMapPin({
       g.drawCircle(
         (pin.x / 100) * PIXI_MAP_SCALE,
         (pin.y / 100) * PIXI_MAP_SCALE,
-        selected || hover ? 6 : 4,
+        selected || hovered ? 6 : 4,
       );
       g.endFill();
     },
-    [selected, interactive, pin, hover],
+    [selected, interactive, pin, hovered],
   );
 
   return (
@@ -41,8 +41,8 @@ export function PixiMapPin({
             }
           : undefined
       }
-      pointerover={interactive ? () => setHover(true) : undefined}
-      pointerout={interactive ? () => setHover(false) : undefined}
+      pointerover={interactive ? onPointerOver : undefined}
+      pointerout={interactive ? onPointerOut : undefined}
     />
   );
 }
