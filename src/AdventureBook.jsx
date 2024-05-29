@@ -7,6 +7,7 @@ import { LocationSelect } from "./LocationSelect";
 import { LocationToolbar } from "./LocationToolbar";
 import { cn } from "./lib/utils";
 import { PixiMap } from "./PixiMap";
+import Markdown from "react-markdown";
 
 export const DEFAULT_TOOL_MODE = "select";
 
@@ -17,6 +18,7 @@ export function AdventureBook() {
   const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [toolMode, setToolMode] = useState(DEFAULT_TOOL_MODE); // 'select' | 'edit' | 'move' | 'place'
   const [mapLayer, setMapLayer] = useState(0);
+  const [playMode, setPlayMode] = useState(false);
 
   const selectedLocation = locations.data?.find(
     (loc) => loc.id === selectedLocationId,
@@ -58,14 +60,14 @@ export function AdventureBook() {
       <div className="sticky top-0 z-10 flex items-center justify-between gap-4 bg-zinc-900">
         <div className="flex items-center gap-4">
           <h1 className="p-4 text-xl font-bold">Adventure Book</h1>
-          {toolMode !== "edit" ? (
+          {!playMode && toolMode !== "edit" ? (
             <LocationSelect
               locations={locations.data}
               selectedLocation={selectedLocation}
               toggleSelect={toggleSelect}
             />
           ) : null}
-          {selectedLocation && toolMode !== "edit" ? (
+          {!playMode && selectedLocation && toolMode !== "edit" ? (
             // FIXME: overflow isn't working
             // see https://www.bennadel.com/blog/3881-css-flexbox-overflow-text-overflow-ellipses-and-a-separation-of-concerns.htm
             <div className="overflow-hidden text-ellipsis">
@@ -79,76 +81,59 @@ export function AdventureBook() {
             toolMode === "edit" ? "grow" : "",
           )}
         >
-          {selectedLocation ? (
-            <LocationToolbar
-              location={selectedLocation}
-              pin={selectedPin}
-              deselect={deselect}
-              toolMode={toolMode}
-              setToolMode={setToolMode}
-            />
-          ) : (
-            <Button onClick={() => clickAddLocation()} variant="secondary">
-              Add Location
-            </Button>
-          )}
+          {!playMode &&
+            (selectedLocation ? (
+              <LocationToolbar
+                location={selectedLocation}
+                pin={selectedPin}
+                deselect={deselect}
+                toolMode={toolMode}
+                setToolMode={setToolMode}
+              />
+            ) : (
+              <Button onClick={() => clickAddLocation()} variant="secondary">
+                Add Location
+              </Button>
+            ))}
           <Button
             onClick={() => setMapLayer((mapLayer + 1) % 4)}
             variant="secondary"
           >
             ☼
           </Button>
+          <Button
+            onClick={() => setPlayMode((prev) => !prev)}
+            variant="secondary"
+          >
+            {playMode ? "🕮" : "✎"}
+          </Button>
         </div>
       </div>
 
-      <PixiMap
-        locations={locations?.data ?? []}
-        pins={pins?.data ?? []}
-        selectedLocation={selectedLocation}
-        selectedPin={selectedPin}
-        toggleSelect={toggleSelect}
-        deselect={deselect}
-        toolMode={toolMode}
-        setToolMode={setToolMode}
-        layer={mapLayer}
-      />
-
-      {/* <div className="relative w-full">
-        <Map
-          locations={locations}
-          pins={pins}
+      {/* FIXME: position breaks sticky */}
+      <div className="relative">
+        <PixiMap
+          locations={locations?.data ?? []}
+          pins={pins?.data ?? []}
           selectedLocation={selectedLocation}
           selectedPin={selectedPin}
           toggleSelect={toggleSelect}
           deselect={deselect}
           toolMode={toolMode}
           setToolMode={setToolMode}
+          layer={mapLayer}
+          interactive={!playMode}
         />
-      </div> */}
-
-      {/* {selectedLocation ? (
-        <Location
-          location={selectedLocation}
-          pin={selectedPin}
-          deselect={deselect}
-          toolMode={toolMode}
-          setToolMode={setToolMode}
-        />
-      ) : (
-        <>
-          <h2 className="p-4 text-lg font-bold">Locations</h2>
-          <LocationsList
-            locations={locations.data}
-            toggleSelect={toggleSelect}
-          />
-          <Button onClick={() => clickAddLocation()} variant="secondary">
-            Add Location
-          </Button>
-        </>
-        // TODO: convert styles to tailwind
-        // TODO: add shadcdn-ui
-        // FIXME: map pins should not be selectable when in place, move modes
-      )} */}
+        {playMode && (
+          <div className="absolute aspect-square w-full bg-zinc-900 bg-opacity-90 backdrop-blur-sm">
+            <div className="mx-auto h-full w-10/12 bg-zinc-900 bg-opacity-80">
+              {selectedLocation && (
+                <Markdown>{selectedLocation.content}</Markdown>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

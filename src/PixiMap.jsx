@@ -19,6 +19,7 @@ export const PixiMap = ({
   toolMode,
   setToolMode,
   layer,
+  interactive,
 }) => {
   // const blurFilter = useMemo(() => new BlurFilter(1), []);
   const updatePinPosition = useUpdatePin();
@@ -67,14 +68,16 @@ export const PixiMap = ({
       width={PIXI_MAP_SCALE}
       height={PIXI_MAP_SCALE}
       options={{ antialias: true, background: 0xffffff }}
-      className="pixi-map aspect-square"
+      className="pixi-map absolute aspect-square"
       raf={false}
       renderOnComponentChange={true}
+      // eventMode={interactive ? "passive" : "none"}
     >
       <Container
         x={0}
         y={0}
-        eventMode={"static"}
+        eventMode={interactive ? "static" : "none"}
+        // eventMode={"static"}
         pointermove={onPointerMove}
         pointerdown={onClickMap}
       >
@@ -82,7 +85,8 @@ export const PixiMap = ({
       </Container>
 
       <Container
-      // filters={[blurFilter]}
+        // filters={[blurFilter]}
+        eventMode={interactive ? "static" : "none"}
       >
         {pins.map((pin) => (
           <Fragment key={pin.id}>
