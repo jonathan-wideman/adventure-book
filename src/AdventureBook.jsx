@@ -8,6 +8,7 @@ import { LocationToolbar } from "./LocationToolbar";
 import { cn } from "./lib/utils";
 import { PixiMap } from "./PixiMap";
 import Markdown from "react-markdown";
+import { CharacterSheet } from "./CharacterSheet";
 
 export const DEFAULT_TOOL_MODE = "select";
 
@@ -18,7 +19,7 @@ export function AdventureBook() {
   const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [toolMode, setToolMode] = useState(DEFAULT_TOOL_MODE); // 'select' | 'edit' | 'move' | 'place'
   const [mapLayer, setMapLayer] = useState(0);
-  const [playMode, setPlayMode] = useState(false);
+  const [playMode, setPlayMode] = useState(true);
 
   const selectedLocation = locations.data?.find(
     (loc) => loc.id === selectedLocationId,
@@ -109,6 +110,12 @@ export function AdventureBook() {
           </Button>
         </div>
       </div>
+
+      {playMode && (
+        <div className="sticky top-0 z-10 w-full bg-zinc-900">
+          <CharacterSheet />
+        </div>
+      )}
 
       {/* FIXME: position breaks sticky */}
       <div className="relative">
